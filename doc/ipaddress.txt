@@ -1,0 +1,33 @@
+gemma ipaddress per i calcoli della rete
+
+require 'ipaddress'
+
+crea una network: 
+ip = IPAddress "172.16.10.1/24"
+ => #<IPAddress::IPv4:0x007fa3040e6f38 @address="172.16.10.1", @prefix=24, @octets=[172, 16, 10, 1], @u32=2886732289> 
+
+netmask:
+ip.netmask
+ => "255.255.255.0" 
+
+network:
+ip.network.address
+ => "172.16.10.0"
+
+primo host:  
+ip.first.address
+ => "172.16.10.1"
+ 
+ultimo host:  
+ip.last.address
+ => "172.16.10.254" 
+
+Numero di hosts della network:
+ip.hosts.size
+ => 254 
+
+Tutti gli ip della network:
+
+ip.hosts.size.times do |i|
+   puts ip.hosts[i].address
+end

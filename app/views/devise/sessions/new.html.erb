@@ -1,0 +1,35 @@
+<div id="area_contenuti" >
+<div class="box">
+<% if !user_signed_in? and !alert.nil? %>
+  <div class="alert_box">
+    <%= image_tag("icone/18/ico_warning_18.gif", :alt => "Attenzione: errore!") %>
+    <label class="fatal_error"><%= alert %></label>
+  </div>
+<% end %>
+
+<h2><%=t('actions.authentication')%></h2>
+
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+
+<div class="riga">
+  <%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %>	
+</div>
+
+<div class="riga">
+  <%= f.label :password %><br />
+  <%= f.password_field :password %>
+</div>
+
+<div class="riga">
+  <%= f.submit t('actions.sign_in'), :class => "pulsante"%>
+</div>
+
+<% end %>
+
+<div class="riga">
+<%= link_to "Back", :back %>
+</div>
+
+</div>
+</div>

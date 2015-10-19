@@ -1,0 +1,96 @@
+<%= form_for(@vlan) do |f| %>
+
+<% if @vlan.errors.any? %>
+  <div class="alert_box">
+    <%= image_tag("icone/18/ico_warning_18.gif", :alt => "Attenzione: errore!") %>
+    <label> <%= t('actions.attention') %>
+      <%= pluralize(@vlan.errors.count, t('activerecord.errors.messages.error'), t('activerecord.errors.messages.errors')) %>:
+    </label>
+    <% @vlan.errors.full_messages.each do |msg| %>
+      <label class="fatal_error"><%= msg %></label>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="riga" style="width: 60%">
+<fieldset>
+  <legend>Definisci vlan (1..4094) e network:</legend>
+  <div class="col_40">
+  <div class="field">
+    <%= f.label :vlan_code %><br />
+    <%= f.number_field :vlan_code, :size => 4, :class => "numero", :readonly => @change %>
+  </div>
+  </div>
+  <div class="col_40">
+  <div class="campo">
+    <%= f.label :network %><br />
+    <%= f.text_field :network, :size => 18, :placeholder => 'xxx.xxx.xxx.xxx/xx', :readonly => @change %>
+  </div> 
+  </div>
+  <div class="col_20">
+  <div class="campo">
+    <%= f.label "Calcola Rete" %><br />
+    <%= image_submit_tag("icone/32/ico_azioni_32.gif", :name => 'set_network', :value => "set") %>  
+  </div> 
+  </div>
+</fieldset>
+</div>
+<div class"sovra_tabber" />
+<br /><br /><br /><br /> 
+<div class="riga">
+  <div class="col_33">
+  <div class="field">
+    <%= f.label :netmask %><br />
+    <%= f.text_field :netmask, :size => 15, :placeholder => 'xxx.xxx.xxx.xxx', :readonly => true %>
+  </div>
+  </div>
+  <div class="col_33">
+  <div class="field">
+    <%= f.label :host_min %><br />
+    <%= f.text_field :host_min, :size => 15, :placeholder => 'xxx.xxx.xxx.xxx', :readonly => true %>
+  </div>
+  </div>
+  <div class="col_33">
+  <div class="field">
+    <%= f.label :host_max %><br />
+    <%= f.text_field :host_max, :size => 15, :placeholder => 'xxx.xxx.xxx.xxx', :readonly => true %>
+  </div>
+  </div> 
+</div>
+<div class="riga">
+  <div class="col_33">
+  <div class="field">
+    <%= f.label :hosts_num %><br />
+    <%= f.number_field :hosts_num, :size => 10, :class => "numero", :readonly => true %>
+  </div>
+  </div>
+  <div class="col_33">  	
+  <div class="field">
+    <%= f.label :gateway %><br />
+    <%= f.text_field :gateway, :size => 15, :placeholder => 'xxx.xxx.xxx.xxx' %>
+  </div>
+  </div>
+  <div class="col_33">  	  
+  <div class="field">
+    <%= f.label :dns %><br />
+    <%= f.text_field :dns, :size => 15, :placeholder => 'xxx.xxx.xxx.xxx' %>
+  </div>
+  </div>
+</div>
+<div class="riga">
+  <div class="col_70">  	  
+  <div class="field">
+    <%= f.label t('activerecord.attributes.vlan.description') %><br />
+    <%= f.text_area :description, :cols => 150, :rows => 10 %>
+  </div>
+  </div>
+</div>
+
+<div class="content_closer_thin"> </div>
+ <div class="area_rispetto">
+    <%= link_to t('actions.back'), vlans_path, :class => "pulsante" %>
+    <%= f.submit :class => "pulsante" %>
+ </div> 
+
+
+<% end %>

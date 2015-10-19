@@ -1,0 +1,304 @@
+rails new webip -d mysql
+
+rake db:create
+
+rails generate scaffold vlan vlan_id:integer network:string netmask:string host_min:string host_max:string h
+osts_num:integer gateway:string dns:string description:text 
+
+edit il file in db/migrate per inserire i limitieventuali dei campi
+
+class CreateVlans < ActiveRecord::Migration
+  def change
+    create_table :vlans do |t|
+      t.integer :vlan_code,      :limit => 4 
+      t.string :network,       :limit => 18
+      t.string :netmask,       :limit => 15
+      t.string :host_min,      :limit => 15
+      t.string :host_max,      :limit => 15
+      t.integer :hosts_num,    :limit => 10
+      t.string :gateway,       :limit => 15
+      t.string :dns,           :limit => 15
+      t.text :description
+
+      t.timestamps
+    end
+    
+    add_index :vlan_code
+  end
+end
+
+crea tabella
+
+rake db:migrate
+
+controllo
+
+mysql> describe vlans;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id          | int(11)     | NO   | PRI | NULL    | auto_increment |
+| vlan_code   | int(11)     | YES  |     | NULL    |                |
+| network     | varchar(18) | YES  |     | NULL    |                |
+| netmask     | varchar(15) | YES  |     | NULL    |                |
+| host_min    | varchar(15) | YES  |     | NULL    |                |
+| host_max    | varchar(15) | YES  |     | NULL    |                |
+| hosts_num   | int(11)     | YES  |     | NULL    |                |
+| gateway     | varchar(15) | YES  |     | NULL    |                |
+| dns         | varchar(15) | YES  |     | NULL    |                |
+| description | text        | YES  |     | NULL    |                |
+| created_at  | datetime    | NO   |     | NULL    |                |
+| updated_at  | datetime    | NO   |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+12 rows in set (0.00 sec)
+
+creare indice per vlan_code
+
+ALTER TABLE `webip_development`.`vlans` ADD INDEX `key_vlan_code`(`vlan_code`);
+
+mysql> describe vlans;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id          | int(11)     | NO   | PRI | NULL    | auto_increment |
+| vlan_code   | int(11)     | YES  | MUL | NULL    |                |
+| network     | varchar(18) | YES  |     | NULL    |                |
+| netmask     | varchar(15) | YES  |     | NULL    |                |
+| host_min    | varchar(15) | YES  |     | NULL    |                |
+| host_max    | varchar(15) | YES  |     | NULL    |                |
+| hosts_num   | int(11)     | YES  |     | NULL    |                |
+| gateway     | varchar(15) | YES  |     | NULL    |                |
+| dns         | varchar(15) | YES  |     | NULL    |                |
+| description | text        | YES  |     | NULL    |                |
+| created_at  | datetime    | NO   |     | NULL    |                |
+| updated_at  | datetime    | NO   |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+12 rows in set (0.00 sec)
+
+
+-------------------------------------
+
+Localizzazione:
+
+in config/application.rb
+
+   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
+    #config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+    # aggiunto per la localizzazione italiana
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
+    config.i18n.locale = :it
+    config.i18n.default_locale = :it
+
+in config/locales
+
+file it.yml scaricato da 
+https://github.com/svenfuchs/rails-i18n/tree/master/rails/locale
+
+in fondo al file it.yml le modifica per l'applicazione:
+Attenzione alle identazioni che devono corrispondere con i nodi dell'albero (che finiscono con nome:)
+i valori fra doppi apici sono le foglie
+es. activerecord.errors.messages.error = "errore"
+...
+# modifiche applicative
+  activerecord:
+  	errors:   
+  	  messages:
+    	error: "errore"
+    	errors: "errori"
+    	taken: "è già in uso"
+    	record_invalid: "Validazione fallita: %{errors}"
+  
+  	models:
+      vlan: Vlan
+    
+  	attributes:
+      vlan:
+        description: "Descrizione"
+
+  actions:
+    actions: "Azioni"
+    edit:    "Modifica"
+    destroy: "Elimina"
+    are_you_sure: "Sei sicuro?"
+    attention: "Attenzione!"
+    back: "Annulla"
+    new: "Inserisci"
+    listing: "Elenco"
+    search: "Ricerca"
+    back_to: "Torna a"
+    medical_services: "Prestazioni"
+    employees: "Dipendenti"
+    companies: "Società"
+    family_members: "Familiari"
+    invoices: "Fatture"
+    balances: "Saldi"
+    users: "Utenti"
+    sign_in: "Entra"
+    authentication: "Accesso"
+    reports: "Stampe"
+    update: "Aggiorna"
+    calculate: "Calcola"
+
+....
+
+nella sezione models si aggiungono man mano tutti i modelli
+e in quella degli attributi, per ogni modello si inseriscono i campi da tradurre
+
+es. USO nelle viste:
+
+<%= t('activerecords.attributes.vlan.description') %>
+<%= t('actions.edit') %>
+
+.................
+
+
+rails generate scaffold vlan_ip vlan_id:integer ip:string hostname:string status:boolean note:text
+
+edit il file in db/migrate per inserire i limitieventuali dei campi
+
+class CreateVlanIps < ActiveRecord::Migration
+  def change
+    create_table :vlan_ips do |t|
+      t.integer :vlan_id,     :limit => 4
+      t.string :ip,           :limit => 15
+      t.string :hostname,     :limit => 16
+      t.boolean :status
+      t.text :note
+
+      t.timestamps
+    end
+    
+    add_index :vlan_id, :ip
+  end
+end
+
+rake db:migrate
+
+mysql> describe vlan_ips;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int(11)     | NO   | PRI | NULL    | auto_increment |
+| vlan_id    | int(11)     | YES  |     | NULL    |                |
+| ip         | varchar(15) | YES  |     | NULL    |                |
+| hostname   | varchar(16) | YES  |     | NULL    |                |
+| status     | tinyint(1)  | YES  |     | NULL    |                |
+| note       | text        | YES  |     | NULL    |                |
+| created_at | datetime    | NO   |     | NULL    |                |
+| updated_at | datetime    | NO   |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+8 rows in set (0.00 sec)
+
+crea indici :
+
+ALTER TABLE `webip_development`.`vlan_ips` MODIFY COLUMN `vlan_id` INTEGER ,
+ ADD INDEX `key_vlan_id`(`vlan_id`);
+ALTER TABLE `webip_development`.`vlan_ips` ADD INDEX `key_ip`(`ip`);
+
+mysql> describe vlan_ips;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int(11)     | NO   | PRI | NULL    | auto_increment |
+| vlan_id    | int(11)     | YES  | MUL | NULL    |                |
+| ip         | varchar(15) | YES  | MUL | NULL    |                |
+| hostname   | varchar(16) | YES  |     | NULL    |                |
+| status     | tinyint(1)  | YES  |     | NULL    |                |
+| note       | text        | YES  |     | NULL    |                |
+| created_at | datetime    | NO   |     | NULL    |                |
+| updated_at | datetime    | NO   |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+8 rows in set (0.07 sec)
+
+integrita' referenziale del db nei modelli:
+
+class Vlan < ActiveRecord::Base
+.....  
+  has_many :vlan_ips
+end
+  
+  has_many = Una vlan ha tanti ip associati
+
+class VlanIp < ActiveRecord::Base
+.....
+  belongs_to vlan  
+end
+
+  belongs_to = Gli ip appartengono ad una vlan
+  
+--------------
+
+  
+In produzione:
+
+creare user rails
+cd /home/rails
+copiare progetto webip in /home/rails/webip
+
+eseguire 
+bundle install
+
+crea db
+rake db:create RAILS_ENV="production"
+
+crea tabelle
+rake db:migrate RAILS_ENV="production"
+
+Precompilazione degli assets (js, css, bmp, ...)
+bundle exec rake assets:precompile   
+
+passenger
+gem install passenger
+
+compila e configura modulo per apache
+passenger-install-apache2-module
+
+configurazione passenger per piu' progetti rails:
+
+user rails
+cd /home/rails
+progetto webip in /home/rails/webip
+
+link simbolico a progetto/public
+mkdir web
+cd web
+ln -s /home/rails/webip/public webip
+
+passenger.conf
+
+LoadModule passenger_module /usr/local/rvm/gems/ruby-2.0.0-p0/gems/passenger-3.0.19/ext/apache2/mod_passenger.so
+   PassengerRoot /usr/local/rvm/gems/ruby-2.0.0-p0/gems/passenger-3.0.19
+   PassengerRuby /usr/local/rvm/wrappers/ruby-2.0.0-p0/ruby
+
+   <VirtualHost *:80>
+      ServerName hostname.domain
+      Options +FollowSymLinks
+
+      RackBaseURI /atro_progetto
+      <Directory /home/rails/web/altro_progetto>
+      # possibilita' di cambiare environment default: production
+      RailsEnv test
+         Options +Indexes +FollowSymLinks -MultiViews
+         # This relaxes Apache security settings.
+         AllowOverride all
+         # MultiViews must be turned off.
+         Options -MultiViews
+         Order allow,deny
+         Allow from all
+      </Directory>
+
+      RackBaseURI /webip
+      # possibilita' di cambiare environment default: production
+      RailsEnv production
+      <Directory /home/rails/web/webip>
+         Options +Indexes +FollowSymLinks -MultiViews
+         # This relaxes Apache security settings.
+         AllowOverride all
+         # MultiViews must be turned off.
+         Options -MultiViews
+         Order allow,deny
+         Allow from all
+      </Directory>
+
+   </VirtualHost>
+

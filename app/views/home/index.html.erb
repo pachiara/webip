@@ -1,0 +1,70 @@
+<div id="accoglienza">
+
+  <div id="area_foto">
+  	<%= image_tag("catalogo_prodotti.jpg", :border=>0) %>
+  </div>
+  <div id="area_contenuti">
+
+     <div id="titolo_pagina">
+       <% if flash[:notice] %>
+         <span class="dati_utente"><%= flash[:notice] %></span>
+       <% end %>
+       <% if flash[:error] %>
+         <span class="dati_utente"><%= flash[:error] %></span>
+       <% end %>
+       Benvenuto!
+     </div>
+
+  <div id="area_login">
+  	<div class="area_testo">
+    <h3>Utente registrato</h3>
+    <hr/>
+
+  <%= form_for(@user, :url => session_path(@user)) do |f| %>
+    <div class="riga">
+      <div class="campo">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, :autofocus => true %>
+      </div>
+    </div>
+    <div class="riga">
+      <div class="campo">
+        <%= f.label :password %><br />
+        <%= f.password_field :password %>
+      </div>
+    </div>
+    <div class="riga">
+      <div class="area_rispetto">
+        <div class="pulsante"> 
+          <%= f.submit "Collegati", :class => "pulsante"  %>
+        </div>    
+      </div>
+    </div>
+  <% end %>
+  </div>  
+  </div>
+    
+    <div id="cards_accoglienza">
+      <div id="box_sx">
+        <div class="area_testo">
+          <h3>Gestione degli indirizzi IP</h3>
+          <hr/>
+          <p>Benvenuto nella pagina di accesso alla gestione degli indirizzi IP: <b>Webip</b>.</p>
+          <p>Webip è un' applicazione interna di Lombardia Informatica che permette il calcolo delle Vlan e
+          	 l'assegnazione degli indirizzi IP.</p>
+        </div>
+      </div>
+      <div id="box_dx">
+        <div class="area_testo">
+          <h3>Accesso al sistema</h3>
+          <hr/>
+          <p>Per accedere a Webip è necessario essere registrati all'applicazione
+             ed inserire nel box sulla destra le credenziali ricevute in fase di registrazione.</p>
+          <p>Se non sei registrato a <b>Webip</b> prima 
+          	<!-- procedi alla --> <!--%= link_to('Registrazione', new_user_registration_path)  %-->
+          	richiedi la registrazione.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

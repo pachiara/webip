@@ -1,0 +1,50 @@
+Vlan
+
+1) aggiorna 
+in scrittura solo i campi:
+Gateway, DNS, Descrizione
+gli altri devono essere protetti
+
+2) crea
+in scrittura solo i campi:
+Vlan_code, Network, Gateway, DNS, Descrizione
+- calcola vlan con gem ipaddress
+gli altri devono essere calcolati automaticamente e esposti protetti
+- genera vlan_ips con gem ipaddress
+Quando registra la Vlan crea la tabella associata con tutti i suoi ip
+
+3) elimina
+l'eliminazione di una Vlan deve avvisare e cancellare anche 
+tutti gli ip ad essa associati (Vlan_ip)
+
+VLAN ip
+
+4) conta liberi e usati
+conta tutti gli host liberi e quelli utilizzati di una vlan da mostrare
+vicino al numero totale di host in rosso quelli utilizzati e in verde quelli liberi
+query per contare gli utilizzati: 
+
+sulle VlanIP:
+ a = VlanIp.where('vlan_id' => 31, 'status' => true).count
+SELECT COUNT(*) FROM `vlan_ips` WHERE `vlan_ips`.`vlan_id` = 31 AND `vlan_ips`.`status` = 1
+
+sulle Vlan:  
+ a = Vlan.find(31).vlan_ips.where('status' => true).count
+SELECT COUNT(*) FROM `vlan_ips` WHERE `vlan_ips`.`vlan_id` = 31 AND `vlan_ips`.`status` = 1  
+
+5) modifica veloce
+sulla lista di tutti gli ip la possibilità di modificare direttamente sulla lista
+
+6) azione: assegna
+obbligatorio hostname, imposta stato a true  
+
+7) azione: rilascia
+cancella hostname, stato e note liberando un ip 
+
+8) stampa registrazione
+stampa tutti i dati utili da inviare a chi lo richiede
+
+9) email registrazione
+invia per email tutti i dati utili da inviare a chi lo richiede
+
+

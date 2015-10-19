@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  vlan_id: 1
+  ip: MyString
+  hostname: 
+  status: false
+  note: MyText
+
+two:
+  vlan_id: 1
+  ip: MyString
+  hostname: 
+  status: false
+  note: MyText

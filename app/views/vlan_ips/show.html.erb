@@ -1,0 +1,33 @@
+<%= render 'header' %>
+<div id="area_contenuti">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Vlan:</b>
+  <%= @vlan_ip.vlan_id %>
+</p>
+
+<p>
+  <b>Ip:</b>
+  <%= @vlan_ip.ip %>
+</p>
+
+<p>
+  <b>Hostname:</b>
+  <%= @vlan_ip.hostname %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @vlan_ip.status %>
+</p>
+
+<p>
+  <b>Note:</b>
+  <%= @vlan_ip.note %>
+</p>
+
+
+<%= link_to 'Edit', edit_vlan_ip_path(@vlan_ip) %> |
+<%= link_to 'Back', vlan_ips_path %>
+</div>

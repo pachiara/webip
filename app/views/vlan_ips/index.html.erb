@@ -1,0 +1,56 @@
+<ul id="banner_orizzontale">
+  <li>Vlan: <%= @vlan.vlan_code %></li>
+  <li>Network: <%= @vlan.network %></li>
+  <li>Netmask: <%= @vlan.netmask %></li>
+  <li>Min: <%= @vlan.host_min %></li>
+  <li>Max: <%= @vlan.host_max %></li>
+  <li>Num: <%= @vlan.hosts_num %></li>
+  <li>Gateway: <%= @vlan.gateway %></li>	
+  <li>DNS: <%= @vlan.dns %></li>	
+</ul>	
+<%= render 'header' %>
+<div id="area_contenuti">
+<table>
+  <tr>
+    <th>Ip</th>
+    <th>Hostname</th>
+    <th class='centrato'><%= t('activerecord.attributes.vlan_ip.status') %></th>
+    <th>Note</th>
+    <th class='centrato' colspan=4><%= t('actions.actions') %></th>
+  </tr>
+
+<% @vlan_ips.each_with_index do |vlan_ip, index| %>
+  <tr <% if index.odd? %> class='riga_alternata' <% end %> >
+    <td><%= vlan_ip.ip %></td>
+    <td><%= vlan_ip.hostname %></td>
+    <td class='centrato'><% if vlan_ip.status %><%= image_tag("icone/18/ico_approva_18.gif", :alt => "Stato: utilizzato") %><% end %></td>
+    <td style="width: 50%"><%= vlan_ip.note %></td>
+    
+    <td class='centrato'>
+    	<%= link_to image_tag("icone/18/ico_cambioIdentita_18.gif", :border=>0), edit_vlan_vlan_ip_path(vlan_ip.vlan_id, vlan_ip) %>
+    	<%= link_to t('actions.assign'), edit_vlan_vlan_ip_path(vlan_ip.vlan_id, vlan_ip) %></td>
+    <td class='centrato'>  	
+    	<%= link_to image_tag("icone/18/ico_utente_18.gif", :border=>0), vlan_vlan_ip_release_path(vlan_ip.vlan_id, vlan_ip) %>
+    	<%= link_to t('actions.release'), vlan_vlan_ip_release_path(vlan_ip.vlan_id, vlan_ip) %></td>
+    <td class='centrato'>
+    	<%= link_to image_tag("icone/18/ico_salvaPdf_18.gif", :border=>0), vlan_vlan_ip_report_path(vlan_ip.vlan_id, vlan_ip, :format=>:pdf) %>    	    	
+    	<%= link_to t('actions.report'), vlan_vlan_ip_report_path(vlan_ip.vlan_id, vlan_ip, :format=>:pdf) %></td>
+    <td class='centrato'>    	
+    	<%= link_to image_tag("icone/18/ico_email_18.gif", :border=>0), vlan_vlan_ip_email_path(vlan_ip.vlan_id, vlan_ip) %>    	    	
+    	<%= link_to t('actions.email'), vlan_vlan_ip_email_path(vlan_ip.vlan_id, vlan_ip) %></td>
+
+    <!--td class='centrato'>< %= link_to t('actions.destroy'), vlan_vlan_ip_path(vlan_ip.vlan_id, vlan_ip), method: :delete, data: { confirm: t('actions.are_you_sure') } %></td-->
+
+  </tr>
+<% end %>
+</table>
+
+<div class="toolbar_tabella">
+<ul class="tool_utility">
+<li>
+<!--%= link_to image_tag("plus_24.png", :border=>0), new_vlan_vlan_ip_path %-->
+<!--%= link_to t('actions.new') + " " + t('activerecord.models.vlan_ip'), new_vlan_vlan_ip_path %-->
+</li>
+</ul>
+</div>
+</div>

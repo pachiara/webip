@@ -1,0 +1,52 @@
+<div id="area_contenuti">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Vlan:</b>
+  <%= @vlan.vlan_code %>
+</p>
+
+<p>
+  <b>Network:</b>
+  <%= @vlan.network %>
+</p>
+
+<p>
+  <b>Netmask:</b>
+  <%= @vlan.netmask %>
+</p>
+
+<p>
+  <b>Host min:</b>
+  <%= @vlan.host_min %>
+</p>
+
+<p>
+  <b>Host max:</b>
+  <%= @vlan.host_max %>
+</p>
+
+<p>
+  <b>Hosts num:</b>
+  <%= @vlan.hosts_num %>
+</p>
+
+<p>
+  <b>Gateway:</b>
+  <%= @vlan.gateway %>
+</p>
+
+<p>
+  <b>Dns:</b>
+  <%= @vlan.dns %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @vlan.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_vlan_path(@vlan) %> |
+<%= link_to 'Back', vlans_path %>
+</div>

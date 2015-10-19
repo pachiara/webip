@@ -1,0 +1,59 @@
+<%= render 'header' %>
+<div id="area_contenuti">
+<%= form_for :email, :url => vlan_vlan_ip_send_email_path do |f| %>
+
+  <% if @email.errors.any? %>    
+    <div class="alert_box">
+      <%= image_tag("icone/18/ico_warning_18.gif", :alt => "Attenzione: errore!") %>
+      <label> <%= t('actions.attention') %>
+        <%= pluralize(@email.errors.count, t('activerecord.errors.messages.error'), t('activerecord.errors.messages.errors')) %>:
+      </label>
+      <% @email.errors.full_messages.each do |msg| %>
+        <label class="fatal_error"><%= msg %></label>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="riga">
+    <div class="col_33">
+      <div class="field">
+      	<%= f.text_field :id, :hidden => true %>  
+      	<%= f.label t('activerecord.attributes.email.sender') %><br />
+        <%= f.text_field :sender, :size => 50, :maxlength => 50, :readonly => true %>    	
+      </div>
+    </div>
+  </div>  	
+  <div class="riga">
+    <div class="col_33">
+      <div class="field">  
+      	<%= f.label t('activerecord.attributes.email.recipient') %><br />
+        <%= f.text_field :recipient, :size => 150, :maxlength => 200, :placeholder => 'nome.cognome@lispa.it' %>    	
+      </div>
+    </div>
+  </div>  
+  <div class="riga">
+    <div class="col_33">
+      <div class="field">
+      	<%= f.label t('activerecord.attributes.email.subject') %><br />
+        <%= f.text_field :subject, :size => 50, :maxlength => 100, :readonly => true %>    	
+      </div>
+    </div>
+  </div>
+  <div class="riga">
+  	<div class="col_100">  
+      <div class="field">
+      	<%= f.label t('activerecord.attributes.email.text') %><br />
+        <%= f.text_area :text, :cols => 150, :rows => 10, :readonly => true %>    
+      </div>
+    </div>
+  </div>  
+  
+  <div class="area_rispetto">
+    <%= link_to t('actions.back'), vlan_vlan_ips_path, :class => "pulsante" %>
+    <%= submit_tag "Invia", :class => "pulsante" %>
+  </div>
+  <div class="content_closer_thin"> </div>
+ 
+ <% end %>
+  
+</div>

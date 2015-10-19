@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  vlan_code: MyString
+  network: MyString
+  netmask: MyString
+  host_min: MyString
+  host_max: MyString
+  hosts_num: 1
+  gateway: MyString
+  dns: MyString
+  description: MyText
+
+two:
+  vlan_code: MyString
+  network: MyString
+  netmask: MyString
+  host_min: MyString
+  host_max: MyString
+  hosts_num: 1
+  gateway: MyString
+  dns: MyString
+  description: MyText
