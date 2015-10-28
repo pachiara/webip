@@ -12,9 +12,9 @@ class User < ActiveRecord::Base
 #         :timeout_in => 20.minutes
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+ # attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
   
-  validate :email, :uniqueness => true
+ # validate :email, :uniqueness => true
   
 end

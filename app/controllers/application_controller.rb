@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
-#  skip_before_filter :require_no_authentication, :only => [:new, :create, :cancel]
-  before_filter :authenticate_user!, :only => :token
+    # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  protect_from_forgery with: :exception
+
 end
