@@ -6,7 +6,9 @@ class Email
   attr_accessor :id, :text, :recipient, :subject, :sender
  
   validates_presence_of :recipient, :subject, :text
-  validates_format_of :recipient, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i  
+  #validates_format_of :recipient, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i  
+  validates_format_of :recipient, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
+  
   validates_length_of :text, :maximum => 500
   
   def initialize(attributes = {})
