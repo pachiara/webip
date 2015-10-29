@@ -62,3 +62,5 @@ gem 'ipaddress'
 gem 'prawn_rails'
 # devise autentication
 gem 'devise'
+# per rails 4
+gem 'protected_attributes'
