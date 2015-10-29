@@ -1,22 +1,23 @@
-<div id="accoglienza">
+<div>
 
-  <div id="area_foto">
-  	<%= image_tag("catalogo_prodotti.jpg", :border=>0) %>
+  <div id="col-md-12">
+  	<%= image_tag("lispa.jpg", :border=>0, class: "col-md-6 img-responsive") %>
   </div>
-  <div id="area_contenuti">
+  
+  <div>
 
-     <div id="titolo_pagina">
+     <div>
        <% if flash[:notice] %>
          <span class="dati_utente"><%= flash[:notice] %></span>
        <% end %>
        <% if flash[:error] %>
          <span class="dati_utente"><%= flash[:error] %></span>
        <% end %>
-       Benvenuto!
+       <h1>Benvenuto!</h1>
      </div>
 
-  <div id="area_login">
-  	<div class="area_testo">
+  <div>
+  	<div>
     <h3>Utente registrato</h3>
     <hr/>
 

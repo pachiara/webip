@@ -9,9 +9,11 @@
 <body>
 <%= render :partial => "layouts/header" %>
 <%= render :partial => "layouts/area_utente" %>
-<div id="titolo_pagina"><%= title %></div>
 
-<%= yield %>
+<div class="col-md-12" id="content">
+  <h1><%= title %></h1>
+  <%= yield %>
+</div>
 
 <%= render :partial => "layouts/footer" %>
 </body>

@@ -1,30 +1,27 @@
-<div id="area_utente">
-  <span class="dati_utente">
-     <span class="ico_utente"></span>
-     <% if user_signed_in? %>
-	   Utente: <%= current_user.email %>
-	 <% end %>  
-  </span>	
-  <ul class="links">
-	<li class="first">
+<div class="area_utente">
+  <div class="container-fluid">
+    <span class="nome_utente">
+	  <span class="glyphicon glyphicon-user white" role="presentation"></span>
+      <% if user_signed_in? %>
+	    Utente: <%= current_user.email %>
+	  <% end %>  
+    </span>
+    <nav class="tools_utente hidden-xs pull-right" role="menu">
     <% if user_signed_in? %>
-	<li class="first">
-      <%= link_to image_tag("icone/18/ico_cambioIdentita_18.gif", :border=>0), edit_user_registration_path %>
-      <%= link_to('Modifica profilo', edit_user_registration_path) %>
-    </li>
-    <li>
-      <%= link_to image_tag("icone/18/ico_rifiuta_18.gif", :border=>0), destroy_user_session_path, :method=>'delete' %>	
-      <%= link_to('Logout', destroy_user_session_path, :method=>'delete') %>
-    </li>    	  
+      <%= link_to edit_user_registration_path, :role => "menuitem" do %>
+        <span class="glyphicon glyphicon-cog white" role="presentation"></span> Modifica profilo   
+      <% end %> 
+      <%= link_to destroy_user_session_path, :method=>'delete', :role => "menuitem" do %>
+        <span class="glyphicon glyphicon-off white" role="presentation"></span> Logout    
+      <% end %> 
     <% else %>
-	<!-- li -->
-      <!--%= link_to image_tag("icone/18/ico_utente_18.gif", :border=>0), new_user_registration_path %-->
-      <!--%= link_to('Registrazione', new_user_registration_path)  %-->
-    <!--/li-->
-	<li>
-      <%= link_to image_tag("icone/18/ico_utente_18.gif", :border=>0), new_user_registration_path %>
-      <%= link_to('Login', new_user_session_path)  %>
-    </li>
+	  <%= link_to new_user_registration_path, :role => "menuitem" do %>
+        <span class="glyphicon glyphicon-cog white" role="presentation"></span> Nuovo Utente   
+      <% end %> 
+  	  <%= link_to user_session_path, :role => "menuitem" do %>
+        <span class="glyphicon glyphicon-cog white" role="presentation"></span> Login   
+      <% end %> 
     <% end %>
-  </ul>
+    </nav>
+  </div>
 </div>

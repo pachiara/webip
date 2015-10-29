@@ -65,3 +65,4 @@ gem 'devise'
 # per rails 4
 gem 'protected_attributes'
 gem 'prawn-table'
+gem 'bootstrap-sass'
