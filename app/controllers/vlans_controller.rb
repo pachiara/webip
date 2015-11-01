@@ -4,8 +4,8 @@ class VlansController < ApplicationController
   def index
 #    @vlans = Vlan.all
 #    @vlans = Vlan.find(:all, :order => 'vlan_code')
-#    @vlans = Vlan.order('vlan_code').page(params[:page]).per_page(10)
-    @vlans = Vlan.order('vlan_code')
+#    @vlans = Vlan.order('vlan_code')
+    @vlans = Vlan.order('vlan_code').page(params[:page]).per_page(15)
     @title = t('actions.listing') + " " + t('activerecord.models.vlan')
     respond_to do |format|
       format.html # index.html.erb
