@@ -1,4 +1,5 @@
 class VlanIpsController < ApplicationController
+  before_filter :authenticate_user! 
   # GET /vlan_ips
   # GET /vlan_ips.json
   def index
