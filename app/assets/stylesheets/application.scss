@@ -925,4 +925,18 @@ li.tree-parent {
 }
 
 /* aggiunte mie*/
-
+.btn-primary {
+  color: #ffffff;
+  background-color: #003354;
+  border-color: #00243b;
+}
+.modal-backdrop {
+  background-color: #dddddd;
+  opacity:0.8; 
+}
+.modal-backdrop.fade.in {
+  z-index: -1; 
+}
+.modal-body {
+  color: #888888;
+}

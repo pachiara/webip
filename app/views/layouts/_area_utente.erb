@@ -18,9 +18,10 @@
 	  <%= link_to new_user_registration_path, :role => "menuitem" do %>
         <span class="glyphicon glyphicon-cog white" role="presentation"></span> Nuovo Utente   
       <% end %> 
-  	  <%= link_to user_session_path, :role => "menuitem" do %>
-        <span class="glyphicon glyphicon-cog white" role="presentation"></span> Login   
+      <%= link_to "#", :role => "menuitem", :id => 'login',  data: {toggle: "modal", target: "#login_modal", keyboard: "false" }  do %>  
+        <span class="glyphicon glyphicon-cog white" role="presentation"></span> Login
       <% end %> 
+      <%= render 'layouts/login_modal' %>
     <% end %>
     </nav>
   </div>
