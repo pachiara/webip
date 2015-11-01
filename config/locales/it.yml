@@ -281,6 +281,6 @@ it:
         not_found_in_database: "Utente non trovato nel database"
         
   will_paginate:
-    next_label: "&rarr;"
-    previous_label: "&larr;"
+    next_label: "&raquo;"
+    previous_label: "&laquo;"
          

@@ -2,10 +2,7 @@ class VlansController < ApplicationController
   # GET /vlans
   # GET /vlans.json
   def index
-#    @vlans = Vlan.all
-#    @vlans = Vlan.find(:all, :order => 'vlan_code')
-#    @vlans = Vlan.order('vlan_code')
-    @vlans = Vlan.order('vlan_code').page(params[:page]).per_page(15)
+    @vlans = Vlan.order('vlan_code').page(params[:page]).per_page(19)
     @title = t('actions.listing') + " " + t('activerecord.models.vlan')
     respond_to do |format|
       format.html # index.html.erb

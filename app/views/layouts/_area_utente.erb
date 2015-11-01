@@ -7,6 +7,9 @@
 	  <% end %>  
     </span>
     <nav class="tools_utente hidden-xs pull-right" role="menu">
+    <%= link_to root_path, :role => "menuitem" do %>
+      <span class="glyphicon glyphicon-home white" role="presentation"></span> Home   
+    <% end %> 	
     <% if user_signed_in? %>
       <%= link_to edit_user_registration_path, :role => "menuitem" do %>
         <span class="glyphicon glyphicon-cog white" role="presentation"></span> Modifica profilo   

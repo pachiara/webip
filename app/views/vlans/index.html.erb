@@ -1,55 +1,57 @@
-<div id="area_contenuti">
-<%= will_paginate @vlans, :renderer => BootstrapPagination::Rails %>
-<table>
+<div class="table-responsive">
+<table class="table table-striped table-condensed table-hover">
+  <thead>	
   <tr>
-    <th class='centrato'>Vlan</th>
-    <th>Network</th>
-    <th>Netmask</th>
-    <th>Host IP min</th>
-    <th>Host IP max</th>
-    <th>Hosts num</th>
-    <th>Assegnati</th>
-    <th>Liberi</th>
-    <th>Gateway</th>
-    <th>Dns</th>
-    <th><%= t('activerecord.attributes.vlan.description') %></th>
-    <th class='centrato' colspan=2><%= t('actions.actions') %></th>
+    <th class="panel-lispa">Vlan</th>
+    <th class="panel-lispa">Network</th>
+    <th class="panel-lispa">Netmask</th>
+    <th class="panel-lispa">Host IP min</th>
+    <th class="panel-lispa">Host IP max</th>
+    <th class="panel-lispa">Hosts num</th>
+    <th class="panel-lispa">Assegnati</th>
+    <th class="panel-lispa">Liberi</th>
+    <th class="panel-lispa">Gateway</th>
+    <th class="panel-lispa">Dns</th>
+    <th class="panel-lispa"><%= t('activerecord.attributes.vlan.description') %></th>
+    <th class="panel-lispa" colspan=2><%= t('actions.actions') %></th>
   </tr>
-
-<% @vlans.each_with_index do |vlan, index| %>
-  <tr
-    <% if index.odd? %> class='riga_alternata' <% end %>
-  >
-    <td class='centrato'><%= link_to vlan.vlan_code, vlan_vlan_ips_path(vlan) %></td>
+  </thead>
+  <tbody>
+  <% @vlans.each_with_index do |vlan, index| %>
+  <tr>
+    <td><%= link_to vlan.vlan_code, vlan_vlan_ips_path(vlan) %></td>
     <td><%= vlan.network %></td>
     <td><%= vlan.netmask %></td>
     <td><%= vlan.host_min %></td>
     <td><%= vlan.host_max %></td>
     <td><%= vlan.hosts_num %></td>
     <% if vlan.hosts_count %>
-    <td style="color: red"><%= vlan.used %></td>
-    <td style="color: green"><%= vlan.free %></td>
+    <td><span class="label label-danger"><%= vlan.used %></span></td>
+    <td><span class="label label-success"><%= vlan.free %></span></td>
     <% end %> 
     <td><%= vlan.gateway %></td>
     <td><%= vlan.dns %></td>
     <td><%= vlan.description %></td>
-    <td class='centrato'>
-    	<%= link_to image_tag("icone/18/ico_modifica_18.gif", :border=>0), edit_vlan_path(vlan) %>   
-    	<%= link_to t('actions.edit'), edit_vlan_path(vlan) %></td>
-    <td class='centrato'>
-    	<%= link_to image_tag("icone/18/ico_eliminaDoc_18.gif", :border=>0), vlan, method: :delete, data: { confirm: t('actions.are_you_sure') } %>   
-    	<%= link_to t('actions.destroy'), vlan, method: :delete, data: { confirm: t('actions.are_you_sure') } %></td>
+    <td>
+      <%= link_to raw('<span class="glyphicon glyphicon-pencil"></span>'),
+      edit_vlan_path(vlan), :class => "btn btn-default", :title => t('actions.edit'), :alt => t('actions.edit') %>   
+      <%= link_to t('actions.edit'), edit_vlan_path(vlan) %></td>
+    <td>
+      <%= link_to raw('<span class="glyphicon glyphicon-trash"></span>'),
+      vlan, method: :delete, data: { confirm: t('actions.are_you_sure') }, 
+      :class => "btn btn-default", :title => t('actions.destroy'), :alt => t('actions.destroy') %> 
+      <%= link_to t('actions.destroy'), vlan, method: :delete, data: { confirm: t('actions.are_you_sure') } %></td>
   </tr>
-<% end %>
+  <% end %>
+  </tbody>
 </table>
-
-<div class="toolbar_tabella">
-<ul class="tool_utility">
-<li>
-<%= link_to image_tag("plus_24.png", :border=>0), new_vlan_path %>
-<%= link_to t('actions.new') + " " + t('activerecord.models.vlan'), new_vlan_path %>
-</li>
-</ul>
+<div class="col-md-6">
+<%= link_to new_vlan_path, :class => "btn btn-primary btn-lg", :title => t('actions.new'), :alt => t('actions.new') do %>
+  <span class="glyphicon glyphicon-plus"></span> <%= t('actions.new') %>
+<% end %>
 </div>
-
+<div class="col-md-6">
+<%= will_paginate @vlans, :renderer => BootstrapPagination::Rails %>
 </div>
+</div>
+<br /><br />
