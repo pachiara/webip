@@ -34,13 +34,13 @@
     <td><%= vlan.description %></td>
     <td>
       <%= link_to raw('<span class="glyphicon glyphicon-pencil"></span>'),
-      edit_vlan_path(vlan), :class => "btn btn-default", :title => t('actions.edit'), :alt => t('actions.edit') %>   
-      <%= link_to t('actions.edit'), edit_vlan_path(vlan) %></td>
+      edit_vlan_path(vlan), :class => "btn btn-default", :title => t('actions.edit'), :alt => t('actions.edit'), data: {toggle: "tooltip", placement: "left" } %>   
+    </td>
     <td>
       <%= link_to raw('<span class="glyphicon glyphicon-trash"></span>'),
-      vlan, method: :delete, data: { confirm: t('actions.are_you_sure') }, 
+      vlan, method: :delete, data: { confirm: t('actions.are_you_sure'), toggle: "tooltip", placement: "left" }, 
       :class => "btn btn-default", :title => t('actions.destroy'), :alt => t('actions.destroy') %> 
-      <%= link_to t('actions.destroy'), vlan, method: :delete, data: { confirm: t('actions.are_you_sure') } %></td>
+    </td>
   </tr>
   <% end %>
   </tbody>
