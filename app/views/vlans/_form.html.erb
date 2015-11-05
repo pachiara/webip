@@ -1,6 +1,6 @@
 <div class="container-fluid">	
 	
-<%= form_for(@vlan) do |f| %>
+<%= simple_form_for(@vlan) do |f| %>
 
 <% if @vlan.errors.any? %>
   <div class="alert alert-danger">
@@ -20,19 +20,13 @@
 <fieldset class="vlan col-md-offset-2 col-md-8 col-sm-12">
   <legend>Definisci vlan (1..4094) e network:</legend>
   <div class="col-md-offset-2 col-md-3 col-sm-4">
-  <div class="field form-group">
-    <%= f.label :vlan_code %><br />
-    <%= f.number_field :vlan_code, :size => 4, :class => "numero", :readonly => @change %>
-  </div>
+    <%= f.input :vlan_code, as: :integer, input_html: { size: 4, maxlength: 4, min: 1, max: 4094, readonly: @change } %>
   </div>
   <div class="col-md-3 col-sm-4">
-  <div class="field form-group">
-    <%= f.label :network %><br />
-    <%= f.text_field :network, :size => 18, :placeholder => 'xxx.xxx.xxx.xxx/xx', :readonly => @change %>
-  </div> 
+    <%= f.input :network, placeholder: 'xxx.xxx.xxx.xxx/xx', input_html: { size: 18, readonly: @change } %>
   </div>
   <div class="col-md-3 col-sm-4">
-  <div class="actions form-group">
+  <div class="form-group">
     <%= f.label "Calcola Rete" %><br />
     <%= button_tag(type: 'submit', class: "btn btn-primary", :name => 'set_network', :value => "set") do %>
     <span class="glyphicon glyphicon-refresh"></span>
@@ -43,52 +37,30 @@
 </div>
 <br />
 <div class="row">
-  <div class="col-md-offset-2 col-md-3 col-sm-4">
-  <div class="form-group">
-    <%= f.label :netmask %><br />
-    <%= f.text_field :netmask, :size => 15, :placeholder => 'xxx.xxx.xxx.xxx', :readonly => true %>
+  <div class="col-md-offset-2 col-md-2 col-sm-3">
+  	<%= f.input :netmask, placeholder: 'xxx.xxx.xxx.xxx', input_html: { size: 15, readonly: true } %>
   </div>
+  <div class="col-md-offset-1 col-md-2 col-sm-3">
+ 	<%= f.input :host_min, placeholder: 'xxx.xxx.xxx.xxx', input_html: { size: 15, readonly: true } %>
   </div>
-  <div class="col-md-3 col-sm-4">
-  <div class="form-group">
-    <%= f.label :host_min %><br />
-    <%= f.text_field :host_min, :size => 15, :placeholder => 'xxx.xxx.xxx.xxx', :readonly => true %>
-  </div>
-  </div>
-  <div class="col-md-3 col-sm-4">
-  <div class="form-group">
-    <%= f.label :host_max %><br />
-    <%= f.text_field :host_max, :size => 15, :placeholder => 'xxx.xxx.xxx.xxx', :readonly => true %>
-  </div>
+  <div class="col-md-offset-1 col-md-2 col-sm-3">
+ 	<%= f.input :host_max, placeholder: 'xxx.xxx.xxx.xxx', input_html: { size: 15, readonly: true } %>
   </div> 
 </div>
 <div class="row">
-  <div class="col-md-offset-2 col-md-3 col-sm-4">
-  <div class="form-group">
-    <%= f.label :hosts_num %><br />
-    <%= f.number_field :hosts_num, :size => 10, :class => "numero", :readonly => true %>
+  <div class="col-md-offset-2 col-md-2 col-sm-3">
+    <%= f.input :hosts_num, as: :integer, input_html: { size: 10, readonly: true } %>
   </div>
+  <div class="col-md-offset-1 col-md-2 col-sm-3">  	
+ 	<%= f.input :gateway, placeholder: 'xxx.xxx.xxx.xxx', input_html: { size: 15 } %>
   </div>
-  <div class="col-md-3 col-sm-4">  	
-  <div class="form-group">
-    <%= f.label :gateway %><br />
-    <%= f.text_field :gateway, :size => 15, :placeholder => 'xxx.xxx.xxx.xxx' %>
-  </div>
-  </div>
-  <div class="col-md-3 col-sm-4">  	  
-  <div class="form-group">
-    <%= f.label :dns %><br />
-    <%= f.text_field :dns, :size => 15, :placeholder => 'xxx.xxx.xxx.xxx' %>
-  </div>
+  <div class="col-md-offset-1 col-md-2 col-sm-3">  	  
+    <%= f.input :dns, placeholder: 'xxx.xxx.xxx.xxx', input_html: { size: 15 } %>  	
   </div>
 </div>
 <div class="row">
-  <div class="col-md-offset-2 col-md-8 col-sm-12">  	  
-  <div class="form-group">
-    <%= f.label t('activerecord.attributes.vlan.description') %><br />
-    <%= f.text_area :description, :cols => 150, :rows => 10, :class =>"vlan_textbox" %>
-  </div>
-  </div>
+  <div class="col-md-offset-2 col-md-8 col-sm-12">  
+    <%= f.input :description, input_html: { cols: 150, rows: 10, class: 'vlan_textbox' } %>   	
 </div>
 
  <div class="col-md-offset-2 col-md-8 col-sm-12">
