@@ -1,4 +1,7 @@
-<ol class="breadcrumb">
+<div class="container-fluid">
+<ol class="breadcrumb col-md-6">
   <li><%= link_to Vlan, vlans_path %></li>
   <li class="active">Vlan IP</li>
 </ol>
+<%= unless @vlan_ips.nil?; will_paginate @vlan_ips, :renderer => BootstrapPagination::Rails, :class => "pull-right"; end %>
+</div>

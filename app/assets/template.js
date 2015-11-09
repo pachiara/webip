@@ -4,29 +4,28 @@ function showAncestors(node) {
 	if (node.className.indexOf("menu_verticale") == -1) showAncestors(node.parentNode);
 };
 $('.list-group-submenu').on('shown.bs.collapse',function () {
-	gs = this.previousElementSibling.getElementsByClassName("glyphicon-play")
+	gs = this.previousElementSibling.getElementsByClassName("glyphicon-play");
 	if (gs.length>0) gs[0].className = gs[0].className.replace("down", "up");
 	if ($('#col-sx').length) setEqualHeight(document.getElementById("col-sx"));
 });
 $('.list-group-submenu').on('hidden.bs.collapse', function () {
-	gs = this.previousElementSibling.getElementsByClassName("glyphicon-play")
+	gs = this.previousElementSibling.getElementsByClassName("glyphicon-play");
 	if (gs.length>0) gs[0].className = gs[0].className.replace("up", "down");
 	if ($('#col-sx').length) setEqualHeight(document.getElementById("col-sx"));
 });
 
 /* Accordion */
 $('.panel-collapse').on('shown.bs.collapse', function () {
-	gs = this.previousElementSibling.getElementsByClassName("glyphicon-plus")
+	gs = this.previousElementSibling.getElementsByClassName("glyphicon-plus");
 	if (gs.length>0) gs[0].className = gs[0].className.replace("plus", "minus");
 });
 $('.panel-collapse').on('hidden.bs.collapse', function () {
-	gs = this.previousElementSibling.getElementsByClassName("glyphicon-minus")
+	gs = this.previousElementSibling.getElementsByClassName("glyphicon-minus");
 	if (gs.length>0) gs[0].className = gs[0].className.replace("minus", "plus");
 });
 
-/* Debug
+/* Debug */
 	$(this).css("background-color","#ff0000");
-*/
 
 /* Carousel */
 function replaceCaption(carousel) {
@@ -34,7 +33,7 @@ function replaceCaption(carousel) {
 	if (carousel.getElementsByClassName("carousel-inner")[0].getElementsByClassName("active")[0]) {
 		item_active = carousel.getElementsByClassName("carousel-inner")[0].getElementsByClassName("active")[0];
 	} else {
-		item_active = carousel.getElementsByClassName("carousel-inner")[0].getElementsByClassName("item")[0]
+		item_active = carousel.getElementsByClassName("carousel-inner")[0].getElementsByClassName("item")[0];
 		item_active.className = item_active.className + " active";
 	}
 	var captions = carousel.getElementsByClassName("carousel-captions")[0];
@@ -91,7 +90,7 @@ $(document).ready(function() {
 	});
 	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 		$('.tab-pane.active').focus();
-	})
+	});
 	$( window ).resize(function() {
 		if ($('#col-sx').length) setEqualHeight(document.getElementById("col-sx"));
 	});
@@ -165,7 +164,7 @@ treeview.prototype.init = function() {
 
    this.$visibleItems = this.$id.find('li:visible');
 
-} // end init()
+}; // end init()
 
 //
 // Function expandGroup() is a member function to expand a collapsed group
@@ -194,7 +193,7 @@ treeview.prototype.expandGroup = function($item, hasFocus) {
    // update the list of visible items
    this.$visibleItems = this.$id.find('li:visible');
 
-} // end expandGroup()
+}; // end expandGroup()
 
 //
 // Function collapseGroup() is a member function to collapse an expanded group
@@ -223,7 +222,7 @@ treeview.prototype.collapseGroup = function($item, hasFocus) {
    // update the list of visible items
    this.$visibleItems = this.$id.find('li:visible');
 
-} // end collapseGroup()
+}; // end collapseGroup()
 
 //
 // Function toggleGroup() is a member function to toggle the display state of a group
@@ -245,7 +244,7 @@ treeview.prototype.toggleGroup = function($item, hasFocus) {
     this.expandGroup($item, hasFocus);
   }
 
-} // end toggleGroup()
+}; // end toggleGroup()
 
 //
 // Function bindHandlers() is a member function to bind event handlers to the listitems
@@ -311,7 +310,7 @@ treeview.prototype.bindHandlers = function() {
          return true;
    });
 
-} // end bindHandlers()
+}; // end bindHandlers()
 
 //
 // Function updateStyling() is a member function to update the styling for the tree items
@@ -351,7 +350,7 @@ treeview.prototype.updateStyling = function($item) {
   // apply the focus and styling and place the element in the tab order
   $item.addClass('tree-focus').attr('tabindex', '0');
 
-} // end updateStyling()
+}; // end updateStyling()
 
 //
 // Function handleKeyDown() is a member function to process keydown events for the treeview items
@@ -515,7 +514,7 @@ treeview.prototype.handleKeyDown = function($item, e) {
 
   return true;
 
-} // end handleKeyDown
+}; // end handleKeyDown
 
 //
 // Function handleKeyPress() is a member function to process keypress events for the treeview items
@@ -595,7 +594,7 @@ treeview.prototype.handleKeyPress = function($item, e) {
 
   return true;
 
-} // end handleKeyPress
+}; // end handleKeyPress
 
 //
 // Function handleDblClick() is a member function to process double-click events for parent items.
@@ -624,7 +623,7 @@ treeview.prototype.handleDblClick = function($id, e) {
   e.stopPropagation();
   return false;
 
-} // end handleDblClick
+}; // end handleDblClick
 
 //
 // Function handleClick() is a member function to process click events.
@@ -649,7 +648,7 @@ treeview.prototype.handleClick = function($id, e) {
   e.stopPropagation();
   return true;
 
-} // end handleClick
+}; // end handleClick
 
 //
 // Function handleFocus() is a member function to process focus events.
@@ -668,7 +667,7 @@ treeview.prototype.handleFocus = function($item, e) {
 
   return true;
 
-} // end handleFocus
+}; // end handleFocus
 
 //
 // Function handleBlur() is a member function to process blur events.
@@ -681,7 +680,7 @@ treeview.prototype.handleBlur = function($id, e) {
 
   return true;
 
-} // end handleBlur
+}; // end handleBlur
 
 
 /* Autocompletamento */

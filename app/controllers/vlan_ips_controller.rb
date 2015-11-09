@@ -5,8 +5,14 @@ class VlanIpsController < ApplicationController
   def index
 #    @vlan_ips = VlanIp.all
 #    @vlan_ips = VlanIp.find(:all, :order => 'ip')
-    @vlan = Vlan.find(params[:vlan_id])
-    @vlan_ips = VlanIp.where(:vlan_id => params[:vlan_id]).order("id asc")
+#   @vlan_ips = VlanIp.where(:vlan_id => params[:vlan_id]).order("id asc")
+    @vlan = Vlan.find(params[:vlan_id])    
+    if params[:page].nil? && !session[:vlan_page].nil? then
+       params[:page] = session[:vlan_page]
+    end
+    @vlan_ips = VlanIp.where(:vlan_id => params[:vlan_id]).order("id asc").page(params[:page]).per_page(15)
+    session[:vlan_page] = params[:page]    
+    
     @title = t('actions.listing') + " " + t('activerecord.models.vlan_ip')
     session[:email] = nil
     

@@ -6,9 +6,9 @@ class VlansController < ApplicationController
     if params[:page].nil? && !session[:vlan_page].nil? then
        params[:page] = session[:vlan_page]
     end
-    @vlans = Vlan.order('vlan_code').page(params[:page]).per_page(18)
-    @title = t('actions.listing') + " " + t('activerecord.models.vlan')
+    @vlans = Vlan.order('vlan_code').page(params[:page]).per_page(15)
     session[:vlan_page] = params[:page]
+    @title = t('actions.listing') + " " + t('activerecord.models.vlan')
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @vlans }
