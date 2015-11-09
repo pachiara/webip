@@ -1,53 +1,45 @@
-<%= form_for @vlan_ip, :url => vlan_vlan_ip_path do |f| %>
+<div class="container-fluid">	
+
+<%= simple_form_for @vlan_ip, :url => vlan_vlan_ip_path do |f| %>
 
   <% if @vlan_ip.errors.any? %>
-    <div class="alert_box">
-      <%= image_tag("icone/18/ico_warning_18.gif", :alt => "Attenzione: errore!") %>
-      <label> <%= t('actions.attention') %>
-        <%= pluralize(@vlan_ip.errors.count, t('activerecord.errors.messages.error'), t('activerecord.errors.messages.errors')) %>:
-      </label>
-      <% @vlan_ip.errors.full_messages.each do |msg| %>
-        <label class="fatal_error"><%= msg %></label>
-      <% end %>
+   <div class="alert alert-danger">
+  	<a class="close" data-dismiss="alert">&#215;</a>
+    <div><b> <%= t('actions.attention') %>
+      <%= pluralize(@vlan_ip.errors.count, t('activerecord.errors.messages.error'), t('activerecord.errors.messages.errors')) %>:</b>
     </div>
+    <ul>
+    <% @vlan_ip.errors.full_messages.each do |msg| %>    
+      <li class="fatal_error"><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
   <% end %>
 
-<div class="riga">
-  <div class="field">
-    <%= f.number_field :vlan_id, :size => 4, :class => "numero", :hidden => true %>
+<div class="row col-md-12">  
+  <%= f.input :vlan_id, as: :hidden, input_html: { size: 4 } %>
+  <div class="col-md-offset-2 col-md-2 col-sm-3">
+ 	<%= f.input :ip, placeholder: 'xxx.xxx.xxx.xxx', input_html: { size: 15, readonly: true } %>
   </div>
-  <div class="col_33">
-  <div class="field">
-    <%= f.label :ip %><br />
-    <%= f.text_field :ip, :size => 15, :placeholder => 'xxx.xxx.xxx.xxx', :readonly => true %>
+  <div class="col-md-offset-2 col-md-2 col-sm-3">
+ 	<%= f.input :hostname, input_html: { size: 16 } %>
   </div>
-  </div>
-  <div class="col_33">
-  <div class="field">
-    <%= f.label :hostname %><br />
-    <%= f.text_field :hostname, :size => 16 %>
-  </div>
-  </div>
-  <div class="col_33">
-  <div class="field">
-    <%= f.check_box :status, :hidden => true %>
-  </div>
-  </div>
-</div>  
-<div class="riga">
-  <div class="col_100">  
-  <div class="field">
-    <%= f.label :note %><br />
-    <%= f.text_area :note, :cols => 150, :rows => 10 %>
-  </div>
-  </div>
+  <div class="col-md-offset-2 col-md-2 col-sm-3">
+    <%= f.input :status, as: :hidden %>
+  </div>  
+</div>
+<div class="col-md-offset-2 col-md-8 col-sm-12"> 	  
+  <%= f.input :note, input_html: { cols: 150, rows: 10, class: 'vlan_textbox' } %>
 </div>  
 
-  
-  <div class="area_rispetto">
-    <%= link_to t('actions.back'), vlan_vlan_ips_path, :class => "pulsante" %>
-    <%= f.submit :class => "pulsante" %>
-  </div>
-  <div class="content_closer_thin"> </div>
+ <div class="col-md-offset-2 col-md-8 col-sm-12">
+   <%= link_to vlan_vlan_ips_path, :class => "btn btn-default btn-lg", :title => t('actions.back'), :alt => t('actions.back') do %>
+     <span class="glyphicon glyphicon-arrow-left"></span> <%= t('actions.back') %>
+   <% end %>	
+   <%= button_tag(type: 'submit', class: "btn btn-primary btn-lg") do %>
+     <span class="glyphicon glyphicon-ok glyphicon-inverse"></span> <%= t('actions.update') %>  
+   <% end %>
+ </div> 
   
 <% end %>
+</div>
