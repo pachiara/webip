@@ -1,0 +1,10 @@
+<div class="container-fluid">
+<div class="col-md-6">
+<%= link_to new_vlan_path, :class => "btn btn-primary btn-lg", :title => t('actions.new'), :alt => t('actions.new') do %>
+  <span class="glyphicon glyphicon-plus"></span> <%= t('actions.new') %>
+<% end %>
+</div>
+<div class="col-md-6">
+<%= will_paginate @vlans, :renderer => BootstrapPagination::Rails, :class => "pull-right" %>
+</div>
+</div>
