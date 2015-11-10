@@ -1,7 +1,7 @@
 prawn_document do |pdf|
 
 # linee verdi in header e footer  
-  pdf.stroke_color "0b8800"
+  pdf.stroke_color "348D45"
   pdf.line_width(2)
   pdf.line [pdf.bounds.left, pdf.bounds.top - 2], [pdf.bounds.right, pdf.bounds.top - 2]
   pdf.line [pdf.bounds.left, pdf.bounds.bottom + 11], [pdf.bounds.right, pdf.bounds.bottom + 11]
@@ -14,7 +14,7 @@ prawn_document do |pdf|
   pdf.text("Stampa assegnazione ip", :align => :center)
 # Classificazione - dx alto        
   pdf.move_cursor_to(pdf.bounds.top + 6)
-  pdf.text("Classificazione: uso interno", :align => :right, :size => 8)
+  pdf.text("Classificazione: a circolazione limitata", :align => :right, :size => 8)
 # Progetto - sx basso
   pdf.draw_text "webip - Vlan Ip", :at =>[pdf.bounds.left, pdf.bounds.bottom], :size => 8
 # Ora - centro basso
@@ -62,40 +62,40 @@ prawn_document do |pdf|
     @vlan_ip.note
   ])        
 
-  pdf.font_size 10
-  pdf.move_down(30)
+  pdf.font_size 12
+  pdf.move_down(40)
       
   pdf.table righe1, :header => true,
     :cell_style => { :borders => [:left, :right], :border_color => "969696" },
     :column_widths => {0=>90, 1=>90, 2=>90, 3=>90, 4=>90, 5=>90},
-    :row_colors => ["d2e3ed", "FFFFFF"] do
-    row(0).background_color = "007777"
+    :row_colors => ["EEEEEE", "FFFFFF"] do
+    row(0).background_color = "003A60"
     row(0).text_color = "ffffff"
     row(0).font_style = :bold
     columns(0..5).align = :center
     row(row_length-1).borders =[:left, :right, :bottom]
   end
 
-  pdf.move_down(30)
+  pdf.move_down(40)
 
   pdf.table righe2, :header => true,
     :cell_style => { :borders => [:left, :right], :border_color => "969696" },
     :column_widths => {0=>90, 1=>90, 2=>360},
-    :row_colors => ["d2e3ed", "FFFFFF"] do
-    row(0).background_color = "007777"
+    :row_colors => ["EEEEEE", "FFFFFF"] do
+    row(0).background_color = "003A60"
     row(0).text_color = "ffffff"
     row(0).font_style = :bold
     columns(0..2).align = :center
     row(row_length-1).borders =[:left, :right, :bottom]
   end
 
-  pdf.move_down(30)
+  pdf.move_down(40)
     
   pdf.table righe3, :header => true,
     :cell_style => { :borders => [:left, :right], :border_color => "969696" },
     :column_widths => {0=>90, 1=>90, 2=>360},
-    :row_colors => ["d2e3ed", "FFFFFF"] do
-    row(0).background_color = "007777"
+    :row_colors => ["EEEEEE", "FFFFFF"] do
+    row(0).background_color = "003A60"
     row(0).text_color = "ffffff"
     row(0).font_style = :bold
     columns(0..2).align = :center
