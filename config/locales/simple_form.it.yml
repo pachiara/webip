@@ -1,0 +1,17 @@
+it:
+  simple_form:
+    "yes": 'Si'
+    "no": 'No'
+    required:
+      text: 'richiesto'
+      mark: '*'
+    error_notification: 
+      default_message: "Correggere i problemi segnalati prima di procedere."        
+    labels:
+      user:
+        remember_me: "Ricordami"
+      email:
+        sender:      "Da:"    
+        recipient:   "A:"
+        subject:     "Oggetto:"
+        text:        "Messaggio:"

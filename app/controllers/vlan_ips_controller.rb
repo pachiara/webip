@@ -7,11 +7,11 @@ class VlanIpsController < ApplicationController
 #    @vlan_ips = VlanIp.find(:all, :order => 'ip')
 #   @vlan_ips = VlanIp.where(:vlan_id => params[:vlan_id]).order("id asc")
     @vlan = Vlan.find(params[:vlan_id])    
-    if params[:page].nil? && !session[:vlan_page].nil? then
-       params[:page] = session[:vlan_page]
+    if params[:page].nil? && !session[:vlan_ips_page].nil? then
+       params[:page] = session[:vlan_ips_page]
     end
     @vlan_ips = VlanIp.where(:vlan_id => params[:vlan_id]).order("id asc").page(params[:page]).per_page(15)
-    session[:vlan_page] = params[:page]    
+    session[:vlan_ips_page] = params[:page]    
     
     @title = t('actions.listing') + " " + t('activerecord.models.vlan_ip')
     session[:email] = nil
@@ -122,28 +122,23 @@ class VlanIpsController < ApplicationController
     @title = t('actions.email') + " " + t('activerecord.models.vlan_ip')
     @vlan_ip = VlanIp.find(params[:vlan_ip_id])
     @vlan = Vlan.find(params[:vlan_id])
-    if session[:email].nil?
+    if @email.nil?
       subject = 'Assegnazione IP'
       text = "Hostname: "+@vlan_ip.hostname+"\nNote: "+@vlan_ip.note+"\nIP: "+@vlan_ip.ip+
       "\nNetwork: "+@vlan.network+"\nNetmask: "+@vlan.netmask+"\nGateway: "+@vlan.gateway+"\nDNS: "+@vlan.dns
       @email = Email.new({:id => 1, :text => text, :subject => subject, :sender => "webip@lispa.it"})
-    else
-      @email = session[:email] 
     end   
   end
   
   def send_email
     @email = Email.new(params[:email])
-
     respond_to do |format|
       if @email.valid?
         Notifier.send_email(@email).deliver
-        session[:email] = nil
         format.html { redirect_to(vlan_vlan_ips_url) }
         format.json { head :no_content }
       else
-        session[:email] = @email
-        format.html { redirect_to(vlan_vlan_ip_email_url) }
+        format.html { render action: "email" }   
         format.json { head :no_content }
       end
     end
