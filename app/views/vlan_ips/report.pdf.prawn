@@ -14,13 +14,19 @@ prawn_document do |pdf|
   pdf.text("Stampa assegnazione ip", :align => :center)
 # Classificazione - dx alto        
   pdf.move_cursor_to(pdf.bounds.top + 6)
-  pdf.text("Classificazione: a circolazione limitata", :align => :right, :size => 8)
+  pdf.text("Classificazione: a circolazione limitata", :align => :right, :size => 9)
 # Progetto - sx basso
   pdf.draw_text "webip - Vlan Ip", :at =>[pdf.bounds.left, pdf.bounds.bottom], :size => 8
 # Ora - centro basso
   pdf.draw_text("Data " + Time.now.strftime('%d/%m/%Y') + "  ora " +
   Time.now.strftime('%H:%M'), :at => [(pdf.bounds.right / 2) - 45, pdf.bounds.bottom], :size => 8)
   pdf.move_down(3)
+
+#Titolo
+pdf.draw_text "Stampa Assegnazione Indirizzi IP",
+    :at => [(pdf.bounds.right / 2) - 100, pdf.bounds.top - 30], :size => 14, :style => :bold
+
+pdf.move_down(3)
 
   righe1 = []   
   righe1.push([ 
@@ -62,7 +68,7 @@ prawn_document do |pdf|
     @vlan_ip.note
   ])        
 
-  pdf.font_size 12
+  pdf.font_size 11
   pdf.move_down(40)
       
   pdf.table righe1, :header => true,
