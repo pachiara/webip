@@ -1,14 +1,5 @@
 <div id="container-fluid" >
-<% if !user_signed_in? and !alert.nil? %>	
-  <div class="alert alert-danger">
-    <a class="close" data-dismiss="alert">&#215;</a>
-    <div>
-      <b> <%= t('actions.attention') %>    
-      <label class="fatal_error"><%= alert %></label></b>
-    </div>
-    <%= devise_error_messages! %>
-  </div>
-<% end %>	
+
 <div class="row col-md-12">
   <div class="col-md-offset-2 col-md-2 col-sm-3">	
     <h2><%=t('actions.registration')%></h2>
@@ -30,17 +21,15 @@
     <%= f.input :password_confirmation %>		
   </div>
 </div>
-<div class="row col-md-12">
-<div class="col-md-offset-2 col-md-2 col-sm-3">
-<%= button_tag(type: 'submit', class: "btn btn-primary btn-lg") do %>
-   <span class="glyphicon glyphicon-ok glyphicon-inverse"></span> <%= t('actions.sign_up') %>  
- <% end %>
-</div>
+<div class="col-md-offset-2 col-md-6">
+  <%= link_to :back, :class => "btn btn-default btn-lg", :title => t('actions.back'), :alt => t('actions.back') do %>
+    <span class="glyphicon glyphicon-arrow-left"></span> <%= t('actions.back') %>
+  <% end %>
+  <%= button_tag(type: 'submit', class: "btn btn-primary btn-lg") do %>
+    <span class="glyphicon glyphicon-ok glyphicon-inverse"></span> <%= t('actions.sign_up') %>  
+  <% end %>
 </div>
 <% end %>
 
-<%= link_to :back, :class => "btn btn-default btn-lg", :title => t('actions.back'), :alt => t('actions.back') do %>
-  <span class="glyphicon glyphicon-arrow-left"></span> <%= t('actions.back') %>
-<% end %>
 
 </div>
