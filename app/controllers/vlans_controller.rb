@@ -6,8 +6,13 @@ class VlansController < ApplicationController
     if params[:page].nil? && !session[:vlan_page].nil? then
        params[:page] = session[:vlan_page]
     end
-    @vlans = Vlan.order('vlan_code').page(params[:page]).per_page(15)
+    if params[:searched].to_s.strip.length > 0 && params[:searched] != session[:searched]
+      params[:page] = 1
+    end
+#    @vlans = Vlan.order('vlan_code').page(params[:page]).per_page(15)
+    @vlans = Vlan.search(params[:sel], params[:searched], params[:page])
     session[:vlan_page] = params[:page]
+    session[:searched] = params[:searched]
     @title = t('actions.listing') + " " + t('activerecord.models.vlan')
     respond_to do |format|
       format.html # index.html.erb

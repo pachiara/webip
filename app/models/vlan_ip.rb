@@ -48,21 +48,21 @@ class VlanIp < ActiveRecord::Base
         when '1'
           search_note(vlan_id, searched, page)
         when '2'
-          search_host(vlan_id, searched, page)
+          search_hostname(vlan_id, searched, page)
         when '3'
           search_ip(vlan_id, searched, page)
       end  
     end
     
-    def search_ip(vlan_id, ip, page, per_page = 15)
+    def search_ip(vlan_id, ip, page, per_page = 10)
       order('id asc, ip').where('vlan_id = ?  AND ip LIKE ?', "#{vlan_id}", "%#{ip}%").paginate(page: page, per_page: per_page)   
     end
     
-    def search_host(vlan_id, hostname, page, per_page = 15)
+    def search_hostname(vlan_id, hostname, page, per_page = 10)
       order('id asc, ip').where('vlan_id = ?  AND hostname LIKE ?', "#{vlan_id}", "%#{hostname}%").paginate(page: page, per_page: per_page)   
     end
     
-    def search_note(vlan_id, note, page, per_page = 15)
+    def search_note(vlan_id, note, page, per_page = 10)
       order('id asc, ip').where('vlan_id = ?  AND note LIKE ?', "#{vlan_id}", "%#{note}%").paginate(page: page, per_page: per_page)   
     end
     

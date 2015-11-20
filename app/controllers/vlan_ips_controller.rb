@@ -10,10 +10,13 @@ class VlanIpsController < ApplicationController
     if params[:page].nil? && !session[:vlan_ips_page].nil? then
        params[:page] = session[:vlan_ips_page]
     end
+    if params[:searched].to_s.strip.length > 0 && params[:searched] != session[:searched]
+      params[:page] = 1
+    end
 #    @vlan_ips = VlanIp.where(:vlan_id => params[:vlan_id]).order("id asc").page(params[:page]).per_page(15)
     @vlan_ips = VlanIp.search(@vlan.id, params[:sel], params[:searched], params[:page])
     session[:vlan_ips_page] = params[:page]    
-    
+    session[:searched] = params[:searched]
     @title = t('actions.listing') + " " + t('activerecord.models.vlan_ip')
     session[:email] = nil
     

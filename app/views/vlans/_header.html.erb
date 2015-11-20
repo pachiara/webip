@@ -1,8 +1,11 @@
 <%= link_to new_vlan_path, :class => "btn btn-round red", :title => t('actions.new'), :alt => t('actions.new') do %>
   <span class="glyphicon glyphicon-plus"></span>
 <% end %>
-<div class="row">
-  <div class="col-md-offset-8 col-md-4">	
-    <%= will_paginate @vlans, :renderer => BootstrapPagination::Rails %>
+<div class="container-fluid">
+  <div class="col-md-offset-2 col-md-4">	
+    <%= render 'search_vlan' %>
+  </div>
+  <div class="col-md-offset-1">	
+    <%= unless @vlans.nil?; will_paginate @vlans, :renderer => BootstrapPagination::Rails; end %>
   </div>
 </div>

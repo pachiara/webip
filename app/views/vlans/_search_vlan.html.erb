@@ -1,0 +1,46 @@
+<div class="pull-left">
+<%= form_tag vlans_path, :method => 'get', :class => "form-group pull-right form-inline", :role => "form" do %> 
+  <div class="input-group">
+  	<span class="input-group-addon">
+      <button id="selector" type="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Vlan<span class="caret"></button>
+      <ul class="dropdown-menu">
+        <li><a id="search_vlan" href="javascript:void(0)" onclick="searchFunc(this);">Vlan</a></li>
+        <li><a id="search_description" href="javascript:void(0)" onclick="searchFunc(this);">Descrizione</a></li>
+        <li><a id="search_network" href="javascript:void(0)"   onclick="searchFunc(this);">Network</a></li>
+      </ul>    	
+    </span>
+    <%= text_field_tag :searched, params[:searched], :class => "pull-left form-control", :placeholder => 'Vlan_code ...', :type => "search" %>
+    <%= text_field_tag :sel, params[:sel], :value => "1", :type => "hidden" %>
+    <span class="input-group-btn">
+      <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+    </span>
+  </div>
+<% end %>
+</div>
+<script>
+  function searchFunc(obj) {
+    switch(obj.id) {
+      case "search_vlan":
+  	    $('#selector').html('Vlan<span class="caret">'); 
+  	    $('#sel').val('1');
+  	    $('#searched').attr('placeholder','Vlan_code ...');
+  	    $('#searched').val("");
+        break;
+      case "search_description":
+  	    $('#selector').html('Descrizione<span class="caret">'); 
+  	    $('#sel').val('2');
+  	    $('#searched').attr('placeholder','Testo ...');
+  	    $('#searched').val("");
+        break;
+      case "search_network":
+  	    $('#selector').html('Network<span class="caret">'); 
+  	    $('#sel').val('3');
+  	    $('#searched').attr('placeholder','xxx.xxx.xxx.xxx/xx');
+  	    $('#searched').val("");
+        break; 
+      default:
+        break;
+    }
+    return false;
+  }	
+</script>

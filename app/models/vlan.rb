@@ -25,5 +25,32 @@ class Vlan < ActiveRecord::Base
      return true
   end
 
+#Metodi di classe
+
+  class << self  
+    def search(sel, searched, page)
+      if sel.nil? then sel = '1' end
+      case sel
+        when '1'
+          search_vlan_code(searched, page)
+        when '2'
+          search_description(searched, page)
+        when '3'
+          search_network(searched, page)
+      end  
+    end
+    
+    def search_vlan_code(vlan_code, page, per_page = 10)
+      order('vlan_code asc').where('vlan_code LIKE ?', "%#{vlan_code}%").paginate(page: page, per_page: per_page)   
+    end
+    
+    def search_description(description, page, per_page = 10)
+      order('vlan_code asc').where('description LIKE ?', "%#{description}%").paginate(page: page, per_page: per_page)   
+    end
+    
+    def search_network(network, page, per_page = 10)
+      order('vlan_code asc').where('network LIKE ?', "%#{network}%").paginate(page: page, per_page: per_page)   
+    end    
+  end
   
 end
