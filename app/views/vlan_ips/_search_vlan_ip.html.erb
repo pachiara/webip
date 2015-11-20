@@ -1,8 +1,46 @@
-<%= form_tag @search_form_path, :method => 'get', :class => "form-group pull-right form-inline", :role => "form" do %> 
-  <div class="input-group-sm">
-    <%= text_field_tag :license_name, params[:license_name], :class => "pull-left form-control", :placeholder => t('activerecord.models.license'), :type => "search" %>
-    <span class="pull-left input-group-btn">
-      <button type="submit" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-search"></span> </button>
+<div class="pull-left">
+<%= form_tag vlan_vlan_ips_path, :method => 'get', :class => "form-group pull-right form-inline", :role => "form" do %> 
+  <div class="input-group">
+  	<span class="input-group-addon">
+      <button id="selector" type="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Note<span class="caret"></button>
+      <ul class="dropdown-menu">
+        <li><a id="search_note" href="javascript:void(0)" onclick="searchFunc(this);">Note</a></li>
+        <li><a id="search_host" href="javascript:void(0)" onclick="searchFunc(this);">Hostname</a></li>
+        <li><a id="search_ip" href="javascript:void(0)"   onclick="searchFunc(this);">IP</a></li>
+      </ul>    	
+    </span>
+    <%= text_field_tag :searched, params[:searched], :class => "pull-left form-control", :placeholder => 'Testo ...', :type => "search" %>
+    <%= text_field_tag :sel, params[:sel], :value => "1", :type => "hidden" %>
+    <span class="input-group-btn">
+      <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
     </span>
   </div>
 <% end %>
+</div>
+<script>
+  function searchFunc(obj) {
+    switch(obj.id) {
+      case "search_note":
+  	    $('#selector').html('Note<span class="caret">'); 
+  	    $('#sel').val('1');
+  	    $('#searched').attr('placeholder','Testo ...');
+  	    $('#searched').val("");
+        break;
+      case "search_host":
+  	    $('#selector').html('Hostname<span class="caret">'); 
+  	    $('#sel').val('2');
+  	    $('#searched').attr('placeholder','Hostname ...');
+  	    $('#searched').val("");
+        break;
+      case "search_ip":
+  	    $('#selector').html('IP<span class="caret">'); 
+  	    $('#sel').val('3');
+  	    $('#searched').attr('placeholder','xxx.xxx.xxx.xxx');
+  	    $('#searched').val("");
+        break; 
+      default:
+        break;
+    }
+    return false;
+  }	
+</script>
