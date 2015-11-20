@@ -4,5 +4,6 @@
   <li class="active">Vlan IP</li>
 </ol>
 <%= render 'search_vlan_ip' %>
+<%= render 'per_page_vlan_ips' %>
 <%= unless @vlan_ips.nil?; will_paginate @vlan_ips, :renderer => BootstrapPagination::Rails, :class => "pull-right"; end %>
 </div>

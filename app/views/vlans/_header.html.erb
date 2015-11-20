@@ -2,8 +2,11 @@
   <span class="glyphicon glyphicon-plus"></span>
 <% end %>
 <div class="container-fluid">
-  <div class="col-md-offset-2 col-md-4">	
+  <div class="col-md-offset-2 col-md-3">	
     <%= render 'search_vlan' %>
+  </div>
+  <div class="col-md-offset-1 col-md-1">	
+    <%= render 'per_page_vlan' %>
   </div>
   <div class="col-md-offset-1">	
     <%= unless @vlans.nil?; will_paginate @vlans, :renderer => BootstrapPagination::Rails; end %>

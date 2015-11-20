@@ -3,15 +3,19 @@ class VlansController < ApplicationController
   # GET /vlans
   # GET /vlans.json
   def index
-    if params[:page].nil? && !session[:vlan_page].nil? then
-       params[:page] = session[:vlan_page]
+    if params[:page].nil? && !session[:vlan_page].nil?
+      params[:page] = session[:vlan_page]
+    end
+    if params[:per_page].nil? && !session[:per_page].nil? 
+      params[:per_page] = 15
     end
     if params[:searched].to_s.strip.length > 0 && params[:searched] != session[:searched]
       params[:page] = 1
     end
 #    @vlans = Vlan.order('vlan_code').page(params[:page]).per_page(15)
-    @vlans = Vlan.search(params[:sel], params[:searched], params[:page])
+    @vlans = Vlan.search(params[:sel], params[:searched], params[:page], params[:per_page])
     session[:vlan_page] = params[:page]
+    session[:per_page] = params[:per_page]
     session[:searched] = params[:searched]
     @title = t('actions.listing') + " " + t('activerecord.models.vlan')
     respond_to do |format|
