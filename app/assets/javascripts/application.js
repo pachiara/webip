@@ -16,12 +16,13 @@
 //= require turbolinks
 //= require_tree .
 
-/* Tooltips */
+
+// Shorthand for $( document ).ready()
 $(function () {
+  /* Tooltips */
   $('[data-toggle="tooltip"]').tooltip();
-});
-/* Accordion */
-$(document).ready(function(){
+
+  /* Accordion */
   $(".panel-collapse").on("hide.bs.collapse", function(){
     gs = this.previousElementSibling.getElementsByClassName("glyphicon-minus");
 	if (gs.length>0) gs[0].className = gs[0].className.replace("minus", "plus");  

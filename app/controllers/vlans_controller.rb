@@ -3,20 +3,27 @@ class VlansController < ApplicationController
   # GET /vlans
   # GET /vlans.json
   def index
+    # paginazione
     if params[:page].nil? && !session[:vlan_page].nil?
       params[:page] = session[:vlan_page]
     end
-    if params[:per_page].nil? && !session[:per_page].nil? 
-      params[:per_page] = 15
+    if params[:per_page].nil? && !session[:vlan_per_page].nil? 
+      params[:per_page] = session[:vlan_per_page]
     end
-    if params[:searched].to_s.strip.length > 0 && params[:searched] != session[:searched]
+    # default 10 righe per pagina
+    if params[:per_page].nil?
+      params[:per_page] = 10
+    end
+    # nuova ricerca riparto dalla prima pagina    
+    if params[:searched].to_s.strip.length > 0 && params[:searched] != session[:vlan_searched]
       params[:page] = 1
     end
-#    @vlans = Vlan.order('vlan_code').page(params[:page]).per_page(15)
+    # ricerca
     @vlans = Vlan.search(params[:sel], params[:searched], params[:page], params[:per_page])
+    # salva valori in sessione
     session[:vlan_page] = params[:page]
-    session[:per_page] = params[:per_page]
-    session[:searched] = params[:searched]
+    session[:vlan_per_page] = params[:per_page]
+    session[:vlan_searched] = params[:searched]
     @title = t('actions.listing') + " " + t('activerecord.models.vlan')
     respond_to do |format|
       format.html # index.html.erb
@@ -84,7 +91,6 @@ class VlansController < ApplicationController
     @title = t('actions.edit') + " " + t('activerecord.models.vlan')
     respond_to do |format|
       if @vlan.update_attributes(params[:vlan])
-#        format.html { redirect_to @vlan, notice: 'Vlan was successfully created.' }
         format.html { redirect_to(vlans_url) }
         format.json { head :no_content }
       else

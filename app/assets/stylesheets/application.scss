@@ -979,8 +979,6 @@ fieldset.vlan {
   border-radius: .25em;
   background-color: #d9534f;
 }
-
-
 .btn-round {
   width: 55.5px;
   height: 55.5px;
@@ -1014,6 +1012,11 @@ fieldset.vlan {
   -ms-transition: all .3s ease-out;
   transition: all .3s ease-out;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+@media (max-width: 768px) {
+  .btn-round {
+    top: 92px; right: 24px;
+  }
 }
 .red {
   background-color: #F44336 !important;

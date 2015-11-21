@@ -3,23 +3,28 @@ class VlanIpsController < ApplicationController
   # GET /vlan_ips
   # GET /vlan_ips.json
   def index
-#    @vlan_ips = VlanIp.all
-#    @vlan_ips = VlanIp.find(:all, :order => 'ip')
-#   @vlan_ips = VlanIp.where(:vlan_id => params[:vlan_id]).order("id asc")
-    @vlan = Vlan.find(params[:vlan_id])    
+    # legge vlan
+    @vlan = Vlan.find(params[:vlan_id])
+    # paginazione    
     if params[:page].nil? && !session[:vlan_ips_page].nil? then
        params[:page] = session[:vlan_ips_page]
     end
-    if params[:per_page].nil? && !session[:per_page].nil? 
-      params[:per_page] = 15
+    if params[:per_page].nil? && !session[:vlan_ips_per_page].nil? 
+      params[:per_page] = session[:vlan_ips_per_page]
     end
+    # default 10 righe per pagina
+    if params[:per_page].nil?
+      params[:per_page] = 10
+    end
+    # nuova ricerca riparto dalla prima pagina
     if params[:searched].to_s.strip.length > 0 && params[:searched] != session[:searched]
       params[:page] = 1
     end
-#    @vlan_ips = VlanIp.where(:vlan_id => params[:vlan_id]).order("id asc").page(params[:page]).per_page(15)
+    # ricerca
     @vlan_ips = VlanIp.search(@vlan.id, params[:sel], params[:searched], params[:page], params[:per_page])
+    # salva valori in sessione
     session[:vlan_ips_page] = params[:page]
-    session[:per_page] = params[:per_page]    
+    session[:vlan_ips_per_page] = params[:per_page]    
     session[:searched] = params[:searched]
     @title = t('actions.listing') + " " + t('activerecord.models.vlan_ip')
     session[:email] = nil

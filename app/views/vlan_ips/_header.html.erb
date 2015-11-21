@@ -3,7 +3,9 @@
   <li><%= link_to Vlan, vlans_path %></li>
   <li class="active">Vlan IP</li>
 </ol>
-<%= render 'search_vlan_ip' %>
+<div class="col-md-3">
+  <%= render 'search_vlan_ip' %>
+</div>
 <%= render 'per_page_vlan_ips' %>
 <%= unless @vlan_ips.nil?; will_paginate @vlan_ips, :renderer => BootstrapPagination::Rails, :class => "pull-right"; end %>
 </div>
