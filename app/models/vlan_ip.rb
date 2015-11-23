@@ -66,6 +66,30 @@ class VlanIp < ActiveRecord::Base
       order('id asc, ip').where('vlan_id = ?  AND note LIKE ?', "#{vlan_id}", "%#{note}%").paginate(page: page, per_page: per_page)   
     end
     
+    def search_all(sel, searched, page, per_page)
+      if sel.nil? then sel = '1' end
+      case sel
+        when '1'
+          search_all_note(searched, page, per_page)
+        when '2'
+          search_all_hostname(searched, page, per_page)
+        when '3'
+          search_all_ip(searched, page, per_page)
+      end  
+    end
+    
+    def search_all_ip(ip, page, per_page)
+      joins(:vlan).order('id asc, ip').where('ip LIKE ?', "%#{ip}%").paginate(page: page, per_page: per_page)   
+    end
+    
+    def search_all_hostname(hostname, page, per_page)
+      joins(:vlan).order('id asc, hostname').where('hostname LIKE ?', "%#{hostname}%").paginate(page: page, per_page: per_page)   
+    end
+    
+    def search_all_note(note, page, per_page)
+      joins(:vlan).order('id asc, ip').where('note LIKE ?', "%#{note}%").paginate(page: page, per_page: per_page)   
+    end   
+    
   end
   
 end

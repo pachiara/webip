@@ -5,6 +5,7 @@ Webip::Application.routes.draw do
   devise_for :users
 
   post "vlans/set"
+  get  "vlan_ips/search_all"
     
 #  resources :vlan_ips
 #  resources :vlans

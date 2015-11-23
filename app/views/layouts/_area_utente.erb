@@ -7,6 +7,9 @@
 	  <% end %>  
     </span>
     <nav class="tools_utente hidden-xs pull-right" role="menu">
+    <%= link_to vlan_ips_search_all_path, :role => "menuitem" do %>
+      <span class="glyphicon glyphicon-search white" role="presentation"></span> Cerca   
+    <% end %>
     <%= link_to root_path, :role => "menuitem" do %>
       <span class="glyphicon glyphicon-home white" role="presentation"></span> Home   
     <% end %> 	

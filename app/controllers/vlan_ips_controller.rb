@@ -17,7 +17,7 @@ class VlanIpsController < ApplicationController
       params[:per_page] = 10
     end
     # nuova ricerca riparto dalla prima pagina
-    if params[:searched].to_s.strip.length > 0 && params[:searched] != session[:searched]
+    if params[:searched].to_s.strip.length > 0 && params[:searched] != session[:vlan_ips_searched]
       params[:page] = 1
     end
     # ricerca
@@ -25,8 +25,9 @@ class VlanIpsController < ApplicationController
     # salva valori in sessione
     session[:vlan_ips_page] = params[:page]
     session[:vlan_ips_per_page] = params[:per_page]    
-    session[:searched] = params[:searched]
+    session[:vlan_ips_searched] = params[:searched]
     @title = t('actions.listing') + " " + t('activerecord.models.vlan_ip')
+    @search_form_path = vlan_vlan_ips_path
     session[:email] = nil
     
     respond_to do |format|
@@ -156,5 +157,40 @@ class VlanIpsController < ApplicationController
       end
     end
   end
+  
+  
+  # GET /vlan_ips/search_all
+  def search_all
+    # paginazione    
+    if params[:page].nil? && !session[:vlan_ips_all_page].nil? then
+       params[:page] = session[:vlan_ips_all_page]
+    end
+    if params[:per_page].nil? && !session[:vlan_ips_all_per_page].nil? 
+      params[:per_page] = session[:vlan_ips_all_per_page]
+    end
+    # default 10 righe per pagina
+    if params[:per_page].nil? || params[:per_page].to_s.strip.length == 0
+      params[:per_page] = 10
+    end
+    # nuova ricerca riparto dalla prima pagina
+    if params[:searched].to_s.strip.length > 0 && params[:searched] != session[:vlan_ips_all_searched]
+      params[:page] = 1
+    end
+    # ricerca
+    @vlan_ips = VlanIp.search_all(params[:sel], params[:searched], params[:page], params[:per_page])
+    # salva valori in sessione
+    session[:vlan_ips_all_page] = params[:page]
+    session[:vlan_ips_all_per_page] = params[:per_page]    
+    session[:vlan_ips_all_searched] = params[:searched]  
+    
+    @title = t('actions.search') + " Host"
+    @search_form_path = vlan_ips_search_all_path
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @vlans }
+    end
+  end
+  
   
 end
