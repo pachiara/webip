@@ -11,7 +11,7 @@ class VlansController < ApplicationController
       params[:per_page] = session[:vlan_per_page]
     end
     # default 10 righe per pagina
-    if params[:per_page].nil?
+    if params[:per_page].nil? || params[:per_page].to_s.strip.length == 0
       params[:per_page] = 10
     end
     # nuova ricerca riparto dalla prima pagina    
