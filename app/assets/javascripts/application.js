@@ -15,20 +15,3 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-
-
-// Shorthand for $( document ).ready()
-$(function () {
-  /* Tooltips */
-  $('[data-toggle="tooltip"]').tooltip();
-
-  /* Accordion */
-  $(".panel-collapse").on("hide.bs.collapse", function(){
-    gs = this.previousElementSibling.getElementsByClassName("glyphicon-minus");
-	if (gs.length>0) gs[0].className = gs[0].className.replace("minus", "plus");  
-  });
-  $(".panel-collapse").on("show.bs.collapse", function(){
-    gs = this.previousElementSibling.getElementsByClassName("glyphicon-plus");
-	if (gs.length>0) gs[0].className = gs[0].className.replace("plus", "minus");  
-  });
-});

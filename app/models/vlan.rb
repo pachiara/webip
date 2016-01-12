@@ -1,4 +1,5 @@
 class Vlan < ActiveRecord::Base
+  resourcify
   attr_accessible :description, :dns, :gateway, :host_max, :host_min, :hosts_num, :netmask, :network, :vlan_code
   
   attr_accessor :used, :free

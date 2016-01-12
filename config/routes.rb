@@ -1,5 +1,9 @@
 Webip::Application.routes.draw do
 
+  get    'admin/users'
+  post   'admin/role/:id', to: 'admin#add_role', as: 'admin/add_role'
+  delete 'admin/role/:id', to: 'admin#remove_role', as: 'admin/remove_role'
+
   get "home/index"
 
   devise_for :users

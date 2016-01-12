@@ -1,4 +1,5 @@
 class VlanIp < ActiveRecord::Base
+  resourcify
   attr_accessible :hostname, :ip, :note, :status, :vlan_id
   validates_presence_of :ip, :vlan_id
   
