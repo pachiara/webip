@@ -9,7 +9,7 @@ it:
     - ven
     - sab
     abbr_month_names:
-    - 
+    -
     - gen
     - feb
     - mar
@@ -35,7 +35,7 @@ it:
       long: ! '%d %B %Y'
       short: ! '%d %b'
     month_names:
-    - 
+    -
     - gennaio
     - febbraio
     - marzo
@@ -211,27 +211,27 @@ it:
 
 # modifiche applicative
 # nodo activerecord:
-     
+
       messages:
         error: "errore"
         errors: "errori"
         taken: "è già in uso"
         record_invalid: "Validazione fallita: %{errors}"
-  
+
     models:
       vlan: Vlan
       vlan_ip: Vlan IP
       email: Email
       user: Utente
-      users: Utenti     
-    
+      users: Utenti
+
     attributes:
       vlan:
         description: "Descrizione"
       vlan_ip:
         status:      "Stato"
       email:
-        sender:      "Da:"    
+        sender:      "Da:"
         recipient:   "A:"
         subject:     "Oggetto:"
         text:        "Messaggio:"
@@ -258,13 +258,13 @@ it:
     assign: "Assegna"
     release: "Rilascia"
     report: "Stampa"
-    email: "Email"    
-      
+    email: "Email"
+
   devise:
     sessions:
       user:
         signed_in: "Accesso effettuato con successo."
-        signed_out: "Sei uscito correttamente."        
+        signed_out: "Sei uscito correttamente."
     registrations:
       user:
         signed_up: "Iscrizione correttamente eseguita. Se abilitata, una conferma è stata inviata al tuo indirizzo email."
@@ -280,8 +280,9 @@ it:
         timeout: "Sessione scaduta, accedere nuovamente per continuare."
         inactive: "Il tuo account non è stato ancora attivato."
         not_found_in_database: "Utente non trovato nel database"
-        
+
   will_paginate:
     next_label: "&raquo;"
     previous_label: "&laquo;"
-         
+
+  title: "Gestione degli indirizzi IP"       
