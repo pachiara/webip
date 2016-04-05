@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Ability
   include CanCan::Ability
 
@@ -29,15 +30,15 @@ class Ability
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
     user ||= User.new # guest user (not logged in)
-      if user.has_role? :admin
-        can :manage, :all
-      else if user.has_role? :user
-        can :read, :all
-        can :update, :all
-      else
-        can :read, Vlan
-        can :read, VlanIp
-      end
-   
+    if user.has_role? :admin
+      can :manage, :all
+    elsif user.has_role? :user
+      can :read, :all
+      can :update, :all
+    else
+      can :read, Vlan
+      can :read, VlanIp
+    end
+
   end
 end

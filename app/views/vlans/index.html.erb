@@ -1,7 +1,7 @@
 <div class="table-responsive">
 <%= render 'header' %>
 <table class="table table-striped table-condensed table-hover">
-  <thead>	
+  <thead>
   <tr>
     <th class="panel-lispa">Vlan</th>
     <th class="panel-lispa">Network</th>
@@ -29,18 +29,18 @@
     <% if vlan.hosts_count %>
     <td><span class="label label-danger"><%= vlan.used %></span></td>
     <td><span class="label label-success"><%= vlan.free %></span></td>
-    <% end %> 
+    <% end %>
     <td><%= vlan.gateway %></td>
     <td><%= vlan.dns %></td>
     <td><%= vlan.description %></td>
     <td>
       <%= link_to raw('<span class="glyphicon glyphicon-pencil"></span>'),
-      edit_vlan_path(vlan), :class => "btn btn-primary", :title => t('actions.edit'), :alt => t('actions.edit'), data: {toggle: "tooltip", placement: "left" } %>   
+      edit_vlan_path(vlan), :class => "btn btn-primary", :title => t('actions.edit'), :alt => t('actions.edit'), data: {toggle: "tooltip", placement: "left" } %>
     </td>
     <td>
       <%= link_to raw('<span class="glyphicon glyphicon-trash"></span>'),
-      vlan, method: :delete, data: { confirm: t('actions.are_you_sure'), toggle: "tooltip", placement: "left" }, 
-      :class => "btn btn-default", :title => t('actions.destroy'), :alt => t('actions.destroy') %> 
+      vlan, method: :delete, data: { confirm: t('actions.are_you_sure'), toggle: "tooltip", placement: "left" },
+      :class => "btn btn-default", :title => t('actions.destroy'), :alt => t('actions.destroy') %>
     </td>
   </tr>
   <% end %>

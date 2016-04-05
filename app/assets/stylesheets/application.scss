@@ -89,12 +89,13 @@ body {
 
 @media (min-width: 768px) {
   #barra_istituzionale {
-    min-height: 95px;
+    min-height: 75px;
   }
   #barra_istituzionale .logo {
     position: absolute;
 /*    top: 39px; */
-    left: 30px; 
+    left: 30px;
+    margin-bottom: 0;
   }
 
   #barra_istituzionale .numero_verde {
@@ -111,7 +112,7 @@ body {
 
   #barra_istituzionale .area_titolo {
     margin-right: 30px;
-    margin-top: 40px;
+    margin-top: 30px;
     color: #333333;
     font-weight: bold;
     float: right;
@@ -232,6 +233,11 @@ body {
   color: #ffffff;
   background-color: #003A60;
   height: 40px;
+  display: block;
+  -webkit-margin-before: 0.33em;
+  -webkit-margin-after: 0.67em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
 }
 .area_utente .nome_utente {
   height: 40px;
@@ -290,7 +296,7 @@ body {
   padding-left: 0;
 }
 .menu_orizzontale .nav-tabs {
-  border: none; 
+  border: none;
 }
 .menu_orizzontale .nav-tabs > li > a:hover,
 .menu_orizzontale .nav-tabs > li > a:focus,
@@ -398,7 +404,7 @@ body {
     font-size: small;
   }
 }
- 
+
 /***************/
 /*** Tabella ***/
 /***************/
@@ -528,7 +534,7 @@ legend.lispa-form {
   height: 2em;
   display: block;
   background: #999999;
-  top: -31px; 
+  top: -31px;
   left: 43%;
   margin-top: -15px;
   margin-left: -15px;
@@ -747,7 +753,7 @@ color: #000000;
 /* Captcha */
 /***********/
 .input-recaptcha{
- width:172px;   
+ width:172px;
 }
 
 /********/
@@ -928,10 +934,10 @@ li.tree-parent {
 
 .modal-backdrop {
   background-color: #dddddd;
-  opacity:0.8; 
+  opacity:0.8;
 }
 .modal-backdrop.fade.in {
-  z-index: -1; 
+  z-index: -1;
 }
 .modal-body {
   color: #888888;
@@ -999,7 +1005,8 @@ fieldset.vlan legend {
   text-transform: uppercase;
   font-size: 15px;
   position: fixed;
-  top: 145px; right: 24px;
+  /* top: 145px; right: 24px; */
+  bottom: 32px; right: 8px;
   cursor: pointer;
   display: inline-block;
   overflow: hidden;
@@ -1020,7 +1027,9 @@ fieldset.vlan legend {
 }
 @media (max-width: 768px) {
   .btn-round {
-    top: 92px; right: 24px;
+/*    top: 92px; right: 24px; */
+    bottom: 32px;
+    right: 8px;
   }
 }
 .red {
@@ -1030,4 +1039,28 @@ fieldset.vlan legend {
   border-color: #dddddd;
   border-width: 1px;
   border-style: solid;
+}
+.container-fluid-list {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 65px;
+  padding-right: 65px;
+}
+.area_utente .title {
+  height: 40px;
+  line-height: 43px;
+  float:left;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-left: 20px;
+  text-overflow: ellipsis;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.75em;
+}
+@media (min-width: 500px) {
+  .area_utente .title {
+    max-width: none;
+  }
 }

@@ -4,36 +4,37 @@
 	  <span class="glyphicon glyphicon-user white" role="presentation"></span>
       <% if user_signed_in? %>
 	    Utente: <%= current_user.email %>
-	  <% end %>  
+	  <% end %>
     </span>
     <% if user_signed_in? %>
     <% if current_user.has_role? :admin %>
     <%= link_to admin_users_path, :role => "menuitem" do %>
-      <span class="glyphicon glyphicon-asterisk white" role="presentation"></span> Gestisci Utenti   
+      <span class="glyphicon glyphicon-asterisk white" role="presentation"></span> Gestisci Utenti
     <% end %>
     <% end %>
     <% end %>
+    <span class="title"><%= title %></span>
     <nav class="tools_utente hidden-xs pull-right" role="menu">
     <%= link_to vlan_ips_search_all_path, :role => "menuitem" do %>
-      <span class="glyphicon glyphicon-search white" role="presentation"></span> Cerca   
+      <span class="glyphicon glyphicon-search white" role="presentation"></span> Cerca
     <% end %>
     <%= link_to root_path, :role => "menuitem" do %>
-      <span class="glyphicon glyphicon-home white" role="presentation"></span> Home   
-    <% end %> 	
+      <span class="glyphicon glyphicon-home white" role="presentation"></span> Home
+    <% end %>
     <% if user_signed_in? %>
       <%= link_to edit_user_registration_path, :role => "menuitem" do %>
-        <span class="glyphicon glyphicon-cog white" role="presentation"></span> Modifica profilo   
-      <% end %> 
+        <span class="glyphicon glyphicon-cog white" role="presentation"></span> Modifica profilo
+      <% end %>
       <%= link_to destroy_user_session_path, :method=>'delete', :role => "menuitem" do %>
-        <span class="glyphicon glyphicon-off white" role="presentation"></span> Logout    
-      <% end %> 
+        <span class="glyphicon glyphicon-off white" role="presentation"></span> Logout
+      <% end %>
     <% else %>
 	  <%= link_to new_user_registration_path, :role => "menuitem" do %>
-        <span class="glyphicon glyphicon-cog white" role="presentation"></span> Nuovo Utente   
-      <% end %> 
-      <%= link_to "#", :role => "menuitem", :id => 'login',  data: {toggle: "modal", target: "#login_modal", keyboard: "false" }  do %>  
+        <span class="glyphicon glyphicon-cog white" role="presentation"></span> Nuovo Utente
+      <% end %>
+      <%= link_to "#", :role => "menuitem", :id => 'login',  data: {toggle: "modal", target: "#login_modal", keyboard: "false" }  do %>
         <span class="glyphicon glyphicon-cog white" role="presentation"></span> Login
-      <% end %> 
+      <% end %>
       <%= render 'layouts/login_modal' %>
     <% end %>
     </nav>
