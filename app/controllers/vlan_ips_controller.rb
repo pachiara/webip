@@ -1,15 +1,15 @@
 class VlanIpsController < ApplicationController
-  before_filter :authenticate_user! 
+  before_action :authenticate_user!
   # GET /vlan_ips
   # GET /vlan_ips.json
   def index
     # legge vlan
     @vlan = Vlan.find(params[:vlan_id])
-    # paginazione    
+    # paginazione
     if params[:page].nil? && !session[:vlan_ips_page].nil? then
        params[:page] = session[:vlan_ips_page]
     end
-    if params[:per_page].nil? && !session[:vlan_ips_per_page].nil? 
+    if params[:per_page].nil? && !session[:vlan_ips_per_page].nil?
       params[:per_page] = session[:vlan_ips_per_page]
     end
     # default 10 righe per pagina
@@ -24,12 +24,12 @@ class VlanIpsController < ApplicationController
     @vlan_ips = VlanIp.search(@vlan.id, params[:sel], params[:searched], params[:page], params[:per_page])
     # salva valori in sessione
     session[:vlan_ips_page] = params[:page]
-    session[:vlan_ips_per_page] = params[:per_page]    
+    session[:vlan_ips_per_page] = params[:per_page]
     session[:vlan_ips_searched] = params[:searched]
     @title = t('actions.listing') + " " + t('activerecord.models.vlan_ip')
     @search_form_path = vlan_vlan_ips_path
     session[:email] = nil
-    
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @vlan_ips }
@@ -85,9 +85,9 @@ class VlanIpsController < ApplicationController
   def update
     @vlan_ip = VlanIp.find(params[:id])
     @title = t('actions.edit') + " " + t('activerecord.models.vlan_ip')
-    
+
     respond_to do |format|
-      if @vlan_ip.update_attributes(params[:vlan_ip])
+      if @vlan_ip.update(vlan_ip_params)
         format.html { redirect_to(vlan_vlan_ips_url) }
         format.json { head :no_content }
       else
@@ -108,20 +108,20 @@ class VlanIpsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   # GET /vlans/1/vlan_ips/1/release
   # GET /vlans/1/vlan_ips/1/release.json
   def release
     @vlan_ip = VlanIp.find(params[:vlan_ip_id])
     @vlan_ip.release
-    @vlan_ip.update_attributes(params[:vlan_ip])
+    @vlan_ip.update(vlan_ip_id_params)
 
     respond_to do |format|
       format.html { redirect_to(vlan_vlan_ips_url) }
       format.json { head :no_content }
     end
   end
-  
+
   # GET /vlans/1/vlan_ips/1/report
   # GET /vlans/1/vlan_ips/1/report.json
   # GET /vlans/1/vlan_ips/1/report.pdf
@@ -131,7 +131,7 @@ class VlanIpsController < ApplicationController
   end
 
   # GET /vlans/1/vlan_ips/1/email
-  # GET /vlans/1/vlan_ips/1/email.json  
+  # GET /vlans/1/vlan_ips/1/email.json
   def email
     @title = t('actions.email') + " " + t('activerecord.models.vlan_ip')
     @vlan_ip = VlanIp.find(params[:vlan_ip_id])
@@ -141,31 +141,30 @@ class VlanIpsController < ApplicationController
       text = "Hostname: "+@vlan_ip.hostname+"\nNote: "+@vlan_ip.note+"\nIP: "+@vlan_ip.ip+
       "\nNetwork: "+@vlan.network+"\nNetmask: "+@vlan.netmask+"\nGateway: "+@vlan.gateway+"\nDNS: "+@vlan.dns
       @email = Email.new({:id => 1, :text => text, :subject => subject, :sender => "webip@lispa.it"})
-    end   
+    end
   end
-  
+
   def send_email
-    @email = Email.new(params[:email])
+    @email = Email.new(email_params)
     respond_to do |format|
       if @email.valid?
         Notifier.send_email(@email).deliver
         format.html { redirect_to(vlan_vlan_ips_url) }
         format.json { head :no_content }
       else
-        format.html { render action: "email" }   
+        format.html { render action: "email" }
         format.json { head :no_content }
       end
     end
   end
-  
-  
+
   # GET /vlan_ips/search_all
   def search_all
-    # paginazione    
+    # paginazione
     if params[:page].nil? && !session[:vlan_ips_all_page].nil? then
        params[:page] = session[:vlan_ips_all_page]
     end
-    if params[:per_page].nil? && !session[:vlan_ips_all_per_page].nil? 
+    if params[:per_page].nil? && !session[:vlan_ips_all_per_page].nil?
       params[:per_page] = session[:vlan_ips_all_per_page]
     end
     # default 10 righe per pagina
@@ -180,17 +179,28 @@ class VlanIpsController < ApplicationController
     @vlan_ips = VlanIp.search_all(params[:sel], params[:searched], params[:page], params[:per_page])
     # salva valori in sessione
     session[:vlan_ips_all_page] = params[:page]
-    session[:vlan_ips_all_per_page] = params[:per_page]    
-    session[:vlan_ips_all_searched] = params[:searched]  
-    
+    session[:vlan_ips_all_per_page] = params[:per_page]
+    session[:vlan_ips_all_searched] = params[:searched]
+
     @title = t('actions.search') + " Host"
     @search_form_path = vlan_ips_search_all_path
-    
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @vlans }
     end
   end
-  
-  
+
+  private
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def vlan_ip_params
+      params.require(:vlan_ip).permit(:hostname, :ip, :note, :status, :vlan_id)
+    end
+    def vlan_ip_id_params
+      params.permit(:hostname, :ip, :note, :status, :vlan_id)
+    end
+    def email_params
+      params.require(:email).permit(:id, :text, :recipient, :subject, :sender)
+    end
+
 end

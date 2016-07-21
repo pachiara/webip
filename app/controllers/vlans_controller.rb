@@ -1,5 +1,5 @@
 class VlansController < ApplicationController
-  before_filter :authenticate_user! 
+  before_action :authenticate_user!
   # GET /vlans
   # GET /vlans.json
   def index
@@ -7,14 +7,14 @@ class VlansController < ApplicationController
     if params[:page].nil? && !session[:vlan_page].nil?
       params[:page] = session[:vlan_page]
     end
-    if params[:per_page].nil? && !session[:vlan_per_page].nil? 
+    if params[:per_page].nil? && !session[:vlan_per_page].nil?
       params[:per_page] = session[:vlan_per_page]
     end
     # default 10 righe per pagina
     if params[:per_page].nil? || params[:per_page].to_s.strip.length == 0
       params[:per_page] = 10
     end
-    # nuova ricerca riparto dalla prima pagina    
+    # nuova ricerca riparto dalla prima pagina
     if params[:searched].to_s.strip.length > 0 && params[:searched] != session[:vlan_searched]
       params[:page] = 1
     end
@@ -63,8 +63,8 @@ class VlansController < ApplicationController
 
   # POST /vlans
   # POST /vlans.json
-  def create    
-    @vlan = Vlan.new(params[:vlan])
+  def create
+    @vlan = Vlan.new(vlan_params)
     @title = t('actions.new') + " " + t('activerecord.models.vlan')
 
     if params[:set_network] == 'set'
@@ -90,7 +90,7 @@ class VlansController < ApplicationController
     @vlan = Vlan.find(params[:id])
     @title = t('actions.edit') + " " + t('activerecord.models.vlan')
     respond_to do |format|
-      if @vlan.update_attributes(params[:vlan])
+      if @vlan.update(vlan_params)
         format.html { redirect_to(vlans_url) }
         format.json { head :no_content }
       else
@@ -112,17 +112,23 @@ class VlansController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   # POST /vlans/set
   def set
     if !@vlan.vlan_code.nil? and !@vlan.network.empty?
       @vlan.set_network
     end
 
-    respond_to do |format|   
+    respond_to do |format|
       format.html { render action: "edit" }
       format.json { render json: @vlan }
     end
-  end  
-  
+  end
+
+  private
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def vlan_params
+      params.require(:vlan).permit(:description, :dns, :gateway, :host_max, :host_min, :hosts_num, :netmask, :network, :vlan_code)
+    end
+
 end
