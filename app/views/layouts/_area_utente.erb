@@ -4,7 +4,7 @@
 	  <span class="glyphicon glyphicon-user white" role="presentation"></span>
       <% if user_signed_in? %>
 	    Utente: <%= current_user.email %>
-	  <% end %>
+	    <% end %>
     </span>
     <span class="title"><%= title %></span>
     <nav class="tools_utente hidden-xs pull-right" role="menu">
@@ -15,24 +15,24 @@
       <% end %>
       <% end %>
       <% end %>
-    <%= link_to vlan_ips_search_all_path, :role => "menuitem" do %>
+    <%= link_to vlan_ips_search_all_path, role: "menuitem", data: {turbolinks: "false"} do %>
       <span class="glyphicon glyphicon-search white" role="presentation"></span> Cerca
     <% end %>
-    <%= link_to root_path, :role => "menuitem" do %>
+    <%= link_to root_path, role: "menuitem", data: {turbolinks: "false"} do %>
       <span class="glyphicon glyphicon-home white" role="presentation"></span> Home
     <% end %>
     <% if user_signed_in? %>
-      <%= link_to edit_user_registration_path, :role => "menuitem" do %>
+      <%= link_to edit_user_registration_path, role: "menuitem" do %>
         <span class="glyphicon glyphicon-cog white" role="presentation"></span> Modifica profilo
       <% end %>
-      <%= link_to destroy_user_session_path, :method=>'delete', :role => "menuitem" do %>
+      <%= link_to destroy_user_session_path, method: 'delete', role: "menuitem" do %>
         <span class="glyphicon glyphicon-off white" role="presentation"></span> Logout
       <% end %>
-    <% else %>
-	  <%= link_to new_user_registration_path, :role => "menuitem" do %>
+      <% else %>
+	    <%= link_to new_user_registration_path, role: "menuitem", data: {turbolinks: "false"} do %>
         <span class="glyphicon glyphicon-cog white" role="presentation"></span> Nuovo Utente
       <% end %>
-      <%= link_to "#", :role => "menuitem", :id => 'login',  data: {toggle: "modal", target: "#login_modal", keyboard: "false" }  do %>
+      <%= link_to "#", role: "menuitem", id: 'login', data: {turbolinks: "false", toggle: "modal", target: "#login_modal", keyboard: "false" }  do %>
         <span class="glyphicon glyphicon-cog white" role="presentation"></span> Login
       <% end %>
       <%= render 'layouts/login_modal' %>

@@ -1,5 +1,5 @@
 class VlanIpsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:search_all]
   # GET /vlan_ips
   # GET /vlan_ips.json
   def index
@@ -160,6 +160,7 @@ class VlanIpsController < ApplicationController
 
   # GET /vlan_ips/search_all
   def search_all
+    @user = User.new
     # paginazione
     if params[:page].nil? && !session[:vlan_ips_all_page].nil? then
        params[:page] = session[:vlan_ips_all_page]

@@ -1,7 +1,7 @@
-
+<div class="col-md-12 col-sm-12">
 <div class="table-responsive">
 <table class="table table-striped table-condensed table-hover">
-  <thead>	
+  <thead>
   <tr>
     <th class="panel-lispa col-md-1">Id</th>
     <th class="panel-lispa col-md-4">Email</th>
@@ -19,27 +19,28 @@
     <td>
       <% user.roles.each do |role| %>
         <%= role.name %>
-      <% end %>	
+      <% end %>
     </td>
     <%= form_tag admin_add_role_path(user), method: :post, :class => "form-group pull-right form-inline", :role => "form" do -%>
     <td>
       <%= select_tag(:role, options_for_select(@roles, 2), :class => "form-control") %>
-    </td>  
+    </td>
     <td>
       <%= button_tag(type: 'submit', class: "btn btn-primary" , :title => t('actions.assign'), :alt => t('actions.assign'), data: {toggle: "tooltip", placement: "left" }) do %>
-        <span class="glyphicon glyphicon-user"></span>  
+        <span class="glyphicon glyphicon-user"></span>
       <% end %>
     </td>
-    <% end %>  
+    <% end %>
     <%= form_tag admin_remove_role_path(user), method: :delete, :class => "form-group pull-right form-inline", :role => "form" do -%>
     <td>
       <%= button_tag(type: 'submit', class: "btn btn-default", :title => t('actions.destroy'), :alt => t('actions.destroy'), data: {toggle: "tooltip", placement: "left" }) do %>
-        <span class="glyphicon glyphicon-trash"></span>  
-      <% end %>	
+        <span class="glyphicon glyphicon-trash"></span>
+      <% end %>
     </td>
-    <% end %>  
-  </tr> 
+    <% end %>
+  </tr>
   <% end %>
   </tbody>
 </table>
+</div>
 </div>

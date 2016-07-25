@@ -6,6 +6,8 @@
 <div class="col-md-3">
   <%= render 'search_vlan_ip' %>
 </div>
+<div class="col-md-2">
 <%= render 'per_page_vlan_ips' %>
-<%= unless @vlan_ips.nil?; will_paginate @vlan_ips, :renderer => BootstrapPagination::Rails, :class => "pull-right"; end %>
+</div>
+<%= unless @vlan_ips.nil?; will_paginate @vlan_ips, :renderer => BootstrapPagination::Rails, :class => "pull-right", :inner_window => 2; end %>
 </div>
