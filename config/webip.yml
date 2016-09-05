@@ -1,0 +1,12 @@
+default: &default
+  # espressione regolare x validazione email utenti
+  users_email_domain_validation_regex: lispa.it$
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
