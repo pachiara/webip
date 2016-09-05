@@ -4,7 +4,6 @@ it:
       not_found: "non trovato"
       already_confirmed: "è stato già confermato"
       not_locked: "non era bloccato"
-
   devise:
     failure:
       unauthenticated: "Devi accedere o registrarti per continuare."
@@ -14,9 +13,21 @@ it:
       invalid_token: "Codice di autenticazione non valido."
       timeout: "Sessione scaduta, accedere nuovamente per continuare."
       inactive: "Il tuo account non è stato ancora attivato."
+      user:
+        unauthenticated: "Devi accedere o registrarti per continuare."
+        unconfirmed: "Devi confermare il tuo account per continuare."
+        locked: "Il tuo account è bloccato."
+        invalid: "Indirizzo email o password non validi."
+        invalid_token: "Codice di autenticazione non valido."
+        timeout: "Sessione scaduta, accedere nuovamente per continuare."
+        inactive: "Il tuo account non è stato ancora attivato."
+        not_found_in_database: "Utente non trovato nel database"
     sessions:
       signed_in: "Accesso effettuato con successo."
       signed_out: "Sei uscito correttamente."
+      user:
+        signed_in: "Accesso effettuato con successo."
+        signed_out: "Sei uscito correttamente."
     passwords:
       send_instructions: "Riceverai un messaggio email con le istruzioni per reimpostare la tua password entro qualche minuto."
       updated: "La tua password è stata cambiata. Ora sei collegato."
@@ -27,6 +38,10 @@ it:
       signed_up: "Iscrizione correttamente eseguita. Se abilitata, una conferma è stata inviata al tuo indirizzo email."
       updated: "Il tuo account è stato aggiornato."
       destroyed: "Arrivederci! L'account è stato cancellato. Speriamo di rivederci presto."
+      user:
+        signed_up: "Iscrizione correttamente eseguita. Se abilitata, una conferma è stata inviata al tuo indirizzo email."
+        updated: "Il tuo account è stato aggiornato."
+        destroyed: "Arrivederci! L'account è stato cancellato. Speriamo di rivederci presto."
     unlocks:
       send_instructions: "Riceverai un messaggio email con le istruzioni per sbloccare il tuo account entro qualche minuto."
       unlocked: "Il tuo account è stato correttamente sbloccato. Ora sei collegato."
@@ -37,3 +52,17 @@ it:
         subject: "Istruzioni per reimpostare la password"
       unlock_instructions:
         subject: "Istruzioni per sbloccare l'account"
+      forgot_password: "Password dimenticata"
+      send_reset_instructions: "Invia istruzioni reimpostazione password"
+      hello: "Salve"
+      requested_change_your_password: "Qualcuno ha richiesto di cambiare la tua password. Puoi farlo cliccando sul link seguente:"
+      not_request_this: "Se non sei stato tu, ignora questa email."
+      password_wont_change: "La password rimane invariata fino a quando non si accede al link qui sopra e se ne crea una nuova."
+    actions:
+      forgot_password: "Password dimenticata"
+      cancel_my_account: "Cancellami"
+      send_reset_instructions: "Invia istruzioni reimpostazione password"
+      change_my_password: "Cambia la mia password"
+      new_password: "Nuova Password"
+      password_confirmation: "Conferma password"
+      current_password: "Password attuale"

@@ -260,29 +260,8 @@ it:
     report: "Stampa"
     email: "Email"
 
-  devise:
-    sessions:
-      user:
-        signed_in: "Accesso effettuato con successo."
-        signed_out: "Sei uscito correttamente."
-    registrations:
-      user:
-        signed_up: "Iscrizione correttamente eseguita. Se abilitata, una conferma è stata inviata al tuo indirizzo email."
-        updated: "Il tuo account è stato aggiornato."
-        destroyed: "Arrivederci! L'account è stato cancellato. Speriamo di rivederci presto."
-    failure:
-      user:
-        unauthenticated: "Devi accedere o registrarti per continuare."
-        unconfirmed: "Devi confermare il tuo account per continuare."
-        locked: "Il tuo account è bloccato."
-        invalid: "Indirizzo email o password non validi."
-        invalid_token: "Codice di autenticazione non valido."
-        timeout: "Sessione scaduta, accedere nuovamente per continuare."
-        inactive: "Il tuo account non è stato ancora attivato."
-        not_found_in_database: "Utente non trovato nel database"
-
   will_paginate:
     next_label: "&raquo;"
     previous_label: "&laquo;"
 
-  title: "Gestione degli indirizzi IP"       
+  title: "Gestione degli indirizzi IP"
