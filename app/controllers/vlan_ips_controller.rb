@@ -168,9 +168,9 @@ class VlanIpsController < ApplicationController
     if params[:per_page].nil? && !session[:vlan_ips_all_per_page].nil?
       params[:per_page] = session[:vlan_ips_all_per_page]
     end
-    # default 10 righe per pagina
+    # default 15 righe per pagina
     if params[:per_page].nil? || params[:per_page].to_s.strip.length == 0
-      params[:per_page] = 10
+      params[:per_page] = 15
     end
     # nuova ricerca riparto dalla prima pagina
     if params[:searched].to_s.strip.length > 0 && params[:searched] != session[:vlan_ips_all_searched]
