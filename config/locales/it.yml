@@ -217,6 +217,7 @@ it:
         errors: "errori"
         taken: "è già in uso"
         record_invalid: "Validazione fallita: %{errors}"
+        format_invalid: "Formato non valido"
 
     models:
       vlan: Vlan
