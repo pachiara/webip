@@ -1,5 +1,5 @@
 <%= render 'header_sub' %>
-<div class="container-fluid">	
+<div class="container-fluid">
 <%= simple_form_for @email, :url => vlan_vlan_ip_send_email_path do |f| %>
 
   <% if @email.errors.any? %>
@@ -9,7 +9,7 @@
       <%= pluralize(@email.errors.count, t('activerecord.errors.messages.error'), t('activerecord.errors.messages.errors')) %>:</b>
     </div>
     <ul>
-    <% @email.errors.full_messages.each do |msg| %>    
+    <% @email.errors.full_messages.each do |msg| %>
       <li class="fatal_error"><%= msg %></li>
     <% end %>
     </ul>
@@ -20,32 +20,35 @@
     <%= f.input :id, as: :hidden %>
     <div class="col-md-offset-2 col-md-2 col-sm-3">
   	  <%= f.input :sender, input_html: { size: 50, maxlength: 50, readonly: true } %>
-    </div>  
+    </div>
+    <div class="col-md-offset-2 col-md-2 col-sm-3">
+  	  <%= f.input :cc, input_html: { size: 50, maxlength: 50, readonly: true } %>
+    </div>
   </div>
   <div class="row col-md-12">
     <div class="col-md-offset-2 col-md-2 col-sm-3">
   	  <%= f.input :recipient, placeholder: 'nome.cognome@lispa.it', input_html: { size: 150, maxlength: 200 } %>
-    </div>  
+    </div>
   </div>
   <div class="row col-md-12">
     <div class="col-md-offset-2 col-md-4 col-sm-5">
   	  <%= f.input :subject, input_html: { size: 50, maxlength: 100, readonly: true } %>
-    </div>  
+    </div>
   </div>
   <div class="row col-md-12">
-    <div class="col-md-offset-2 col-md-8 col-sm-12"> 	  
+    <div class="col-md-offset-2 col-md-8 col-sm-12">
       <%= f.input :text, as: :text, input_html: { cols: 150, rows: 10, readonly: true } %>
-    </div>  
+    </div>
   </div>
 
   <div class="col-md-offset-2 col-md-8 col-sm-12">
     <%= link_to vlan_vlan_ips_path, :class => "btn btn-default btn-lg", :title => t('actions.back'), :alt => t('actions.back') do %>
       <span class="glyphicon glyphicon-arrow-left"></span> <%= t('actions.back') %>
-    <% end %>	
-    <%= button_tag(type: 'submit', class: "btn btn-primary btn-lg") do %>
-      <span class="glyphicon glyphicon-ok glyphicon-inverse"></span> <%= t('actions.update') %>  
     <% end %>
-  </div> 
+    <%= button_tag(type: 'submit', class: "btn btn-primary btn-lg") do %>
+      <span class="glyphicon glyphicon-ok glyphicon-inverse"></span> <%= t('actions.update') %>
+    <% end %>
+  </div>
 
  <% end %>
 </div>

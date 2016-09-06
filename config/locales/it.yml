@@ -233,6 +233,7 @@ it:
       email:
         sender:      "Da:"
         recipient:   "A:"
+        cc:          "Cc:"
         subject:     "Oggetto:"
         text:        "Messaggio:"
 

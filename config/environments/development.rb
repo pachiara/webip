@@ -53,6 +53,9 @@ Rails.application.configure do
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # modifiche
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { address: '10.212.29.5', port: 25,
+  authentication: 'plain', enable_starttls_auto: false }
   # indirizzo per mail di conferma verso l'applicazione
   config.action_mailer.default_url_options = { :host => '127.0.0.1', :port => '3000' }
 

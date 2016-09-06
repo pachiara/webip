@@ -140,12 +140,13 @@ class VlanIpsController < ApplicationController
       subject = 'Assegnazione IP'
       text = "Hostname: "+@vlan_ip.hostname+"\nNote: "+@vlan_ip.note+"\nIP: "+@vlan_ip.ip+
       "\nNetwork: "+@vlan.network+"\nNetmask: "+@vlan.netmask+"\nGateway: "+@vlan.gateway+"\nDNS: "+@vlan.dns
-      @email = Email.new({:id => 1, :text => text, :subject => subject, :sender => "webip@lispa.it"})
+      @email = Email.new({id: 1, text: text, subject: subject, sender: "webip@lispa.it", cc: current_user.email})
     end
   end
 
   def send_email
     @email = Email.new(email_params)
+
     respond_to do |format|
       if @email.valid?
         Notifier.send_email(@email).deliver
@@ -201,7 +202,7 @@ class VlanIpsController < ApplicationController
       params.permit(:hostname, :ip, :note, :status, :vlan_id)
     end
     def email_params
-      params.require(:email).permit(:id, :text, :recipient, :subject, :sender)
+      params.require(:email).permit(:id, :text, :recipient, :subject, :sender, :cc)
     end
 
 end

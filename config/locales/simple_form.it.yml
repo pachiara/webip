@@ -5,13 +5,14 @@ it:
     required:
       text: 'richiesto'
       mark: '*'
-    error_notification: 
-      default_message: "Correggere i problemi segnalati prima di procedere."        
+    error_notification:
+      default_message: "Correggere i problemi segnalati prima di procedere."
     labels:
       user:
         remember_me: "Ricordami"
       email:
-        sender:      "Da:"    
+        sender:      "Da:"
         recipient:   "A:"
+        cc:          "Cc:"
         subject:     "Oggetto:"
         text:        "Messaggio:"
