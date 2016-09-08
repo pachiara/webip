@@ -3,6 +3,8 @@ class VlansController < ApplicationController
   # GET /vlans
   # GET /vlans.json
   def index
+    @edit   = helpers.set_edit(current_user)
+    @manage = helpers.set_manage(current_user)
     # paginazione
     if params[:page].nil? && !session[:vlan_page].nil?
       params[:page] = session[:vlan_page]
@@ -25,6 +27,7 @@ class VlansController < ApplicationController
     session[:vlan_per_page] = params[:per_page]
     session[:vlan_searched] = params[:searched]
     @title = t('actions.listing') + " " + t('activerecord.models.vlan')
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @vlans }

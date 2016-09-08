@@ -21,19 +21,19 @@
         <%= role.name %>
       <% end %>
     </td>
-    <%= form_tag admin_add_role_path(user), method: :post, :class => "form-group pull-right form-inline", :role => "form" do -%>
+    <%= form_tag admin_add_role_path(user), method: :post, class: "form-group pull-right form-inline", role: "form" do -%>
     <td>
-      <%= select_tag(:role, options_for_select(@roles, 2), :class => "form-control") %>
+      <%= select_tag(:role, options_for_select(@roles, 2), class: "form-control") %>
     </td>
     <td>
-      <%= button_tag(type: 'submit', class: "btn btn-primary" , :title => t('actions.assign'), :alt => t('actions.assign'), data: {toggle: "tooltip", placement: "left" }) do %>
+      <%= button_tag(type: 'submit', class: "btn btn-primary" , title: t('actions.assign'), alt: t('actions.assign'), data: {toggle: "tooltip", placement: "left" }) do %>
         <span class="glyphicon glyphicon-user"></span>
       <% end %>
     </td>
     <% end %>
-    <%= form_tag admin_remove_role_path(user), method: :delete, :class => "form-group pull-right form-inline", :role => "form" do -%>
+    <%= form_tag admin_remove_role_path(user), method: :delete, class: "form-group pull-right form-inline", role: "form" do -%>
     <td>
-      <%= button_tag(type: 'submit', class: "btn btn-default", :title => t('actions.destroy'), :alt => t('actions.destroy'), data: {toggle: "tooltip", placement: "left" }) do %>
+      <%= button_tag(type: 'submit', class: "btn btn-default", title: t('actions.destroy'), alt: t('actions.destroy'), data: {toggle: "tooltip", placement: "left" }) do %>
         <span class="glyphicon glyphicon-trash"></span>
       <% end %>
     </td>

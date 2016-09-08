@@ -3,6 +3,7 @@ class VlanIpsController < ApplicationController
   # GET /vlan_ips
   # GET /vlan_ips.json
   def index
+    @edit   = helpers.set_edit(current_user)
     # legge vlan
     @vlan = Vlan.find(params[:vlan_id])
     # paginazione

@@ -35,6 +35,8 @@ class Ability
     elsif user.has_role? :user
       can :read, :all
       can :update, :all
+    elsif user.has_role? :reader
+      can :read, :all
     else
       can :read, Vlan
       can :read, VlanIp

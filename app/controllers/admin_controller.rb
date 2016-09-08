@@ -1,10 +1,10 @@
 class AdminController < ApplicationController
-  before_action :authenticate_user!   
+  before_action :authenticate_user!
 
   def users
     @users = User.all
     @title = t('actions.listing') + " " + t('activerecord.models.users')
-    @roles = [['Admin', 1], ['User', 2]]
+    @roles = [['Admin', 1], ['User', 2], ['Reader', 3]]
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,6 +18,7 @@ class AdminController < ApplicationController
     role = case params[:role]
       when '1' then :admin
       when '2' then :user
+      when '3' then :reader
       else nil
     end
 
@@ -34,6 +35,7 @@ class AdminController < ApplicationController
 
     user.remove_role :admin
     user.remove_role :user
+    user.remove_role :reader
 
     respond_to do |format|
       format.html { redirect_to admin_users_url }

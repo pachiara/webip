@@ -34,16 +34,22 @@
     <td><%= vlan.dns %></td>
     <td><%= vlan.description %></td>
     <td>
+      <% if @edit then @class = "btn btn-primary" else @class = "btn btn-primary disabled" end %>
       <%= link_to raw('<span class="glyphicon glyphicon-pencil"></span>'),
-      edit_vlan_path(vlan), :class => "btn btn-primary", :title => t('actions.edit'), :alt => t('actions.edit'), data: {toggle: "tooltip", placement: "left" } %>
+      edit_vlan_path(vlan), class: @class, title: t('actions.edit'), alt: t('actions.edit'), data: {toggle: "tooltip", placement: "left" } %>
     </td>
     <td>
+      <% if @manage then @class = "btn btn-default" else @class = "btn btn-default disabled" end %>
       <%= link_to raw('<span class="glyphicon glyphicon-trash"></span>'),
       vlan, method: :delete, data: { confirm: t('actions.are_you_sure'), toggle: "tooltip", placement: "left" },
-      :class => "btn btn-default", :title => t('actions.destroy'), :alt => t('actions.destroy') %>
+      class: @class, title: t('actions.destroy'), alt: t('actions.destroy') %>
     </td>
   </tr>
   <% end %>
   </tbody>
 </table>
 </div>
+<% if @manage then @class = "btn btn-round red" else @class = "btn btn-round red disabled" end %>
+<%= link_to new_vlan_path, class: @class, title: t('actions.new'), alt: t('actions.new') do %>
+  <span class="glyphicon glyphicon-plus"></span>
+<% end %>
