@@ -1,6 +1,7 @@
 class VlanIp < ApplicationRecord
   resourcify
   validates_presence_of :ip, :vlan_id
+  validates :hostname, length: { maximum: 50 }
 
   before_update :update_vlan_ip
 
