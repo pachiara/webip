@@ -1,4 +1,4 @@
-class CreateVlanIps < ActiveRecord::Migration
+class CreateVlanIps < ActiveRecord::Migration[5.0]
   def change
     create_table :vlan_ips do |t|
       t.integer :vlan_id,     :limit => 4
@@ -9,7 +9,7 @@ class CreateVlanIps < ActiveRecord::Migration
 
       t.timestamps
     end
-    
-    add_index :vlan_ips, [:vlan_id, :ip], :unique => true 
+
+    add_index :vlan_ips, [:vlan_id, :ip], :unique => true
   end
 end

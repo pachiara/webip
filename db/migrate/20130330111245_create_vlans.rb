@@ -1,7 +1,7 @@
-class CreateVlans < ActiveRecord::Migration
+class CreateVlans < ActiveRecord::Migration[5.0]
   def change
     create_table :vlans do |t|
-      t.integer :vlan_code,    :limit => 4 
+      t.integer :vlan_code,    :limit => 4
       t.string :network,       :limit => 18
       t.string :netmask,       :limit => 15
       t.string :host_min,      :limit => 15
@@ -11,9 +11,9 @@ class CreateVlans < ActiveRecord::Migration
       t.string :dns,           :limit => 15
       t.text :description
 
-      t.timestamps      
+      t.timestamps
     end
-    
-    add_index :vlans, :vlan_code, :unique => true 
+
+    add_index :vlans, :vlan_code, :unique => true
   end
 end
