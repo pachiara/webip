@@ -10,7 +10,7 @@ Webip::Application.routes.draw do
 
   post "vlans/set"
   get  "vlan_ips/search_all"
-    
+
 #  resources :vlan_ips
 #  resources :vlans
 

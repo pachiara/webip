@@ -1,5 +1,5 @@
-<div class="container-fluid">	
-	
+<div class="container-fluid form_web col-md-offset-1 col-md-10">
+
 <%= simple_form_for(@vlan) do |f| %>
 
 <% if @vlan.errors.any? %>
@@ -9,7 +9,7 @@
       <%= pluralize(@vlan.errors.count, t('activerecord.errors.messages.error'), t('activerecord.errors.messages.errors')) %>:</b>
     </div>
     <ul>
-    <% @vlan.errors.full_messages.each do |msg| %>    
+    <% @vlan.errors.full_messages.each do |msg| %>
       <li class="fatal_error"><%= msg %></li>
     <% end %>
     </ul>
@@ -17,7 +17,7 @@
 <% end %>
 
 <div class="row col-md-12">
-<fieldset class="vlan col-md-offset-2 col-md-8 col-sm-12">
+<fieldset class="vlan">
   <legend>Definisci vlan (1..4094) e network:</legend>
   <div class="col-md-offset-2 col-md-3 col-sm-4">
     <%= f.input :vlan_code, as: :integer, input_html: { size: 4, maxlength: 4, min: 1, max: 4094, readonly: @change } %>
@@ -31,13 +31,13 @@
     <%= button_tag(type: 'submit', class: "btn btn-primary", :name => 'set_network', :value => "set") do %>
     <span class="glyphicon glyphicon-refresh"></span>
     <% end %>
-  </div> 
+  </div>
   </div>
 </fieldset>
 </div>
 <br />
 <div class="row">
-  <div class="col-md-offset-2 col-md-2 col-sm-3">
+  <div class="col-md-offset-1 col-md-2 col-sm-3">
   	<%= f.input :netmask, placeholder: 'xxx.xxx.xxx.xxx', input_html: { size: 15, readonly: true } %>
   </div>
   <div class="col-md-offset-1 col-md-2 col-sm-3">
@@ -45,33 +45,33 @@
   </div>
   <div class="col-md-offset-1 col-md-2 col-sm-3">
  	<%= f.input :host_max, placeholder: 'xxx.xxx.xxx.xxx', input_html: { size: 15, readonly: true } %>
-  </div> 
+  </div>
 </div>
 <div class="row">
-  <div class="col-md-offset-2 col-md-2 col-sm-3">
+  <div class="col-md-offset-1 col-md-2 col-sm-3">
     <%= f.input :hosts_num, as: :integer, input_html: { size: 10, readonly: true } %>
   </div>
-  <div class="col-md-offset-1 col-md-2 col-sm-3">  	
+  <div class="col-md-offset-1 col-md-2 col-sm-3">
  	<%= f.input :gateway, placeholder: 'xxx.xxx.xxx.xxx', input_html: { size: 15 } %>
   </div>
-  <div class="col-md-offset-1 col-md-2 col-sm-3">  	  
-    <%= f.input :dns, placeholder: 'xxx.xxx.xxx.xxx', input_html: { size: 15 } %>  	
+  <div class="col-md-offset-1 col-md-2 col-sm-3">
+    <%= f.input :dns, placeholder: 'xxx.xxx.xxx.xxx', input_html: { size: 15 } %>
   </div>
 </div>
 <div class="row">
-  <div class="col-md-offset-2 col-md-8 col-sm-12">  
-    <%= f.input :description, input_html: { cols: 150, rows: 10, class: 'vlan_textbox' } %>  
-  </div>   	
+  <div class="col-md-offset-1 col-md-10 col-sm-12">
+    <%= f.input :description, input_html: { cols: 150, rows: 8, class: 'vlan_textbox' } %>
+  </div>
 </div>
 
- <div class="col-md-offset-2 col-md-8 col-sm-12">
+ <div class="col-md-offset-1 col-md-10 col-sm-12">
    <%= link_to vlans_path, :class => "btn btn-default btn-lg", :title => t('actions.back'), :alt => t('actions.back') do %>
      <span class="glyphicon glyphicon-arrow-left"></span> <%= t('actions.back') %>
-   <% end %>	
-   <%= button_tag(type: 'submit', class: "btn btn-primary btn-lg") do %>
-     <span class="glyphicon glyphicon-ok glyphicon-inverse"></span> <%= t('actions.update') %>  
    <% end %>
- </div> 
+   <%= button_tag(type: 'submit', class: "btn btn-primary btn-lg") do %>
+     <span class="glyphicon glyphicon-ok glyphicon-inverse"></span> <%= t('actions.update') %>
+   <% end %>
+ </div>
 
 <% end %>
 </div>

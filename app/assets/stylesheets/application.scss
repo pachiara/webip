@@ -236,7 +236,7 @@ body {
   height: 40px;
   display: block;
   -webkit-margin-before: 0.33em;
-  -webkit-margin-after: 0.67em;
+  //-webkit-margin-after: 0.67em;
   -webkit-margin-start: 0px;
   -webkit-margin-end: 0px;
 }
@@ -264,6 +264,7 @@ body {
   display: inline;
   list-style-image: none;
   padding: 0 10px 0 0;
+  float:right;
 }
 .area_utente a:hover {
   color: #ffff00;
@@ -964,6 +965,7 @@ fieldset.vlan {
   border: 1px groove #ddd !important;
   padding: 0 1.4em 1.4em 1.4em !important;
   margin-bottom: 1.5em;
+  margin-left: 1.5em;
   -webkit-box-shadow:  0px 0px 0px 0px #000;
           box-shadow:  0px 0px 0px 0px #000;
 }
@@ -1064,4 +1066,41 @@ fieldset.vlan legend {
   .area_utente .title {
     max-width: none;
   }
+}
+
+/* Parallax */
+body, html {
+  height: 100%;
+}
+body {
+  padding-top: 150px;
+  padding-bottom: 0px;
+}
+
+.parallax {
+  /* The image used */
+  background-image: image-url("img_parallax.jpg");
+
+  /* Full height */
+  height: 50%;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.barre {
+  min-height: 0px;
+}
+#barra_istituzionale .titolo_funzione {
+  font-size: 1.25em;
+  display: inline;
+  line-height: 1;
+  margin-right: 60px;
+}
+.form_web {
+  background-color: #f5f5f0;
+  margin-bottom: 50px;
 }

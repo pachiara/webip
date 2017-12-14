@@ -3,16 +3,16 @@
 <br /><br /><br />
 <div class="row">
 
-<div class="col-md-offset-1 col-md-5 border">
+<div class="col-md-offset-1 col-md-5 border form_web">
   <h2><%=t('actions.edit')%> <%= resource_name.to_s.humanize %></h2>
   <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-    <%= f.input :email, input_html: { autofocus: true } %>	
+    <%= f.input :email, input_html: { autofocus: true } %>
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       Attualmente in attesa di conferma per: <%= resource.unconfirmed_email %>
     <% end %>
     <%= f.input :password, input_html: { autocomplete: "off" } %>
     <i>(lascare in bianco per non cambiarla)</i>
-    <%= f.input :password_confirmation %>		
+    <%= f.input :password_confirmation %>
     <%= f.input :current_password %>
     <i>(occorre inserire la password attuale per confermare i cambiamenti)</i>
     <br /><br />
@@ -20,13 +20,13 @@
       <span class="glyphicon glyphicon-arrow-left"></span> <%= t('actions.back') %>
     <% end %>
     <%= button_tag(type: 'submit', class: "btn btn-primary btn-lg") do %>
-      <span class="glyphicon glyphicon-ok glyphicon-inverse"></span> <%= t('actions.update') %>  
+      <span class="glyphicon glyphicon-ok glyphicon-inverse"></span> <%= t('actions.update') %>
     <% end %>
     <br /><br />
   <% end %>
 </div>
 
-<div class="col-md-offset-1 col-md-4 border">
+<div class="col-md-offset-1 col-md-4 border form_web">
     <h2><%=t('actions.destroy')%> <%= resource_name.to_s.humanize %></h2>
 	<%= button_to "Elimina", registration_path(resource_name), :data => { :confirm => "Sei sicuro di voler eliminare ?" }, :method => :delete, :class => "btn btn-primary btn-lg" %></p>
 </div>
@@ -35,4 +35,3 @@
 
 </div>
 <br />
-

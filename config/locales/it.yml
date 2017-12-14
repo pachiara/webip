@@ -219,6 +219,11 @@ it:
         errors: "errori"
         taken: "è già in uso"
         format_invalid: "Formato non valido"
+      models:
+        user:
+          attributes:
+            email:
+              invalid_domain: "dominio invalido"
 
     models:
       vlan: Vlan
@@ -237,7 +242,7 @@ it:
         recipient:   "A:"
         cc:          "Cc:"
         subject:     "Oggetto:"
-        text:        "Messaggio:"
+        text:        "Messaggio:"      
 
   actions:
     actions: "Azioni"
@@ -268,3 +273,8 @@ it:
     previous_label: "&laquo;"
 
   title: "Gestione degli indirizzi IP"
+  sign: "WEBIP"
+
+  notice:
+    create: "Vlan creata con successo"
+    update: "Vlan aggiornata con successo"

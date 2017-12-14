@@ -7,13 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= render :partial => "layouts/header" %>
-  <%= render :partial => "layouts/area_utente" %>
-  <%= render 'layouts/messages' %>
-  <div class="container-fluid-list">
-    <%= yield %>
-  </div>
-  <%= render :partial => "layouts/footer" %>
+  <nav class="navbar navbar-default navbar-fixed-top barre">
+    <%= render :partial => "layouts/header" %>
+    <%= render :partial => "layouts/area_utente" %>
+    <%= render 'layouts/messages' %>
+  </nav>
+  <%= yield %>
+  <nav class="navbar navbar-default navbar-fixed-bottom barre">
+    <%= render :partial => "layouts/footer" %>
+  </nav>
 <script>
 // Shorthand for $( document ).ready()
 $(function () {

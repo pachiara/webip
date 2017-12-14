@@ -6,6 +6,7 @@ it:
       not_locked: "non era bloccato"
   devise:
     failure:
+      already_authenticated: "Hai già effettuato l'accesso."
       unauthenticated: "Devi accedere o registrarti per continuare."
       unconfirmed: "Devi confermare il tuo account per continuare."
       locked: "Il tuo account è bloccato."

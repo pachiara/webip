@@ -1,4 +1,4 @@
-<div class="container-fluid">	
+<div class="container-fluid form_web col-md-offset-1 col-md-10">
 
 <%= simple_form_for @vlan_ip, :url => vlan_vlan_ip_path do |f| %>
 
@@ -9,16 +9,16 @@
       <%= pluralize(@vlan_ip.errors.count, t('activerecord.errors.messages.error'), t('activerecord.errors.messages.errors')) %>:</b>
     </div>
     <ul>
-    <% @vlan_ip.errors.full_messages.each do |msg| %>    
+    <% @vlan_ip.errors.full_messages.each do |msg| %>
       <li class="fatal_error"><%= msg %></li>
     <% end %>
     </ul>
   </div>
   <% end %>
 
-<div class="row col-md-12">  
+<div class="row col-md-12">
   <%= f.input :vlan_id, as: :hidden, input_html: { size: 4 } %>
-  <div class="col-md-offset-2 col-md-2 col-sm-3">
+  <div class="col-md-offset-1 col-md-2 col-sm-3">
  	<%= f.input :ip, placeholder: 'xxx.xxx.xxx.xxx', input_html: { size: 15, readonly: true } %>
   </div>
   <div class="col-md-offset-2 col-md-2 col-sm-3">
@@ -26,20 +26,20 @@
   </div>
   <div class="col-md-offset-2 col-md-2 col-sm-3">
     <%= f.input :status, as: :hidden %>
-  </div>  
+  </div>
 </div>
-<div class="col-md-offset-2 col-md-8 col-sm-12"> 	  
-  <%= f.input :note, input_html: { cols: 150, rows: 10, class: 'vlan_textbox' } %>
-</div>  
+<div class="col-md-offset-1 col-md-10 col-sm-12">
+  <%= f.input :note, input_html: { cols: 150, rows: 8, class: 'vlan_textbox' } %>
+</div>
 
- <div class="col-md-offset-2 col-md-8 col-sm-12">
+ <div class="col-md-offset-1 col-md-10 col-sm-12">
    <%= link_to vlan_vlan_ips_path, :class => "btn btn-default btn-lg", :title => t('actions.back'), :alt => t('actions.back') do %>
      <span class="glyphicon glyphicon-arrow-left"></span> <%= t('actions.back') %>
-   <% end %>	
-   <%= button_tag(type: 'submit', class: "btn btn-primary btn-lg") do %>
-     <span class="glyphicon glyphicon-ok glyphicon-inverse"></span> <%= t('actions.update') %>  
    <% end %>
- </div> 
-  
+   <%= button_tag(type: 'submit', class: "btn btn-primary btn-lg") do %>
+     <span class="glyphicon glyphicon-ok glyphicon-inverse"></span> <%= t('actions.update') %>
+   <% end %>
+ </div>
+
 <% end %>
 </div>

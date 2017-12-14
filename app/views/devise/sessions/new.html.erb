@@ -1,28 +1,27 @@
 <div class="container-fluid">
-
 <div class="row col-md-12">
-  <div class="col-md-offset-2 col-md-2 col-sm-3">	
+  <div class="col-md-offset-2 col-md-2 col-sm-3">
     <h2><%=t('actions.authentication')%></h2>
   </div>
 </div>
 <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 <div class="row col-md-12">
   <div class="col-md-offset-2 col-md-2 col-sm-3">
-    <%= f.input :email, input_html: { autofocus: true } %>	
+    <%= f.input :email, input_html: { autofocus: true } %>
   </div>
 </div>
 <div class="row col-md-12">
   <div class="col-md-offset-2 col-md-2 col-sm-3">
     <%= f.input :password %>
   </div>
-</div> 
+</div>
 <div class="col-md-offset-2 col-md-6">
 <%= link_to root_path, :class => "btn btn-default btn-lg", :title => t('actions.back'), :alt => t('actions.back') do %>
   <span class="glyphicon glyphicon-arrow-left"></span> <%= t('actions.back') %>
 <% end %>
 &nbsp;
 <%= button_tag(type: 'submit', class: "btn btn-primary btn-lg") do %>
-   <span class="glyphicon glyphicon-ok glyphicon-inverse"></span> <%= t('actions.sign_in') %>  
+   <span class="glyphicon glyphicon-ok glyphicon-inverse"></span> <%= t('actions.sign_in') %>
  <% end %>
 </div>
 <% end %>

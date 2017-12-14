@@ -1,13 +1,11 @@
-<div class="area_utente">
-  <div class="container-fluid">
+  <div class="container-fluid area_utente">
     <span class="nome_utente">
 	  <span class="glyphicon glyphicon-user white" role="presentation"></span>
       <% if user_signed_in? %>
 	    Utente: <%= current_user.email %>
 	    <% end %>
     </span>
-    <span class="title"><%= title %></span>
-    <nav class="tools_utente hidden-xs pull-right" role="menu">
+    <nav class="tools_utente" role="menu">
       <% if user_signed_in? %>
       <% if current_user.has_role? :admin %>
       <%= link_to admin_users_path, :role => "menuitem" do %>
@@ -39,4 +37,3 @@
     <% end %>
     </nav>
   </div>
-</div>
