@@ -1,4 +1,4 @@
-class CreateVlans < ActiveRecord::Migration[5.0]
+class CreateVlans < ActiveRecord::Migration[5.1]
   def change
     create_table :vlans do |t|
       t.integer :vlan_code,    :limit => 4
@@ -6,7 +6,7 @@ class CreateVlans < ActiveRecord::Migration[5.0]
       t.string :netmask,       :limit => 15
       t.string :host_min,      :limit => 15
       t.string :host_max,      :limit => 15
-      t.integer :hosts_num,    :limit => 10
+      t.decimal :hosts_num,    :limit => 10
       t.string :gateway,       :limit => 15
       t.string :dns,           :limit => 15
       t.text :description

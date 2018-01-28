@@ -1,4 +1,4 @@
-class CreateVlanIps < ActiveRecord::Migration[5.0]
+class CreateVlanIps < ActiveRecord::Migration[5.1]
   def change
     create_table :vlan_ips do |t|
       t.integer :vlan_id,     :limit => 4

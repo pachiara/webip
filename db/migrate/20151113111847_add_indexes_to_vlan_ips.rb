@@ -1,4 +1,4 @@
-class AddIndexesToVlanIps < ActiveRecord::Migration[5.0]
+class AddIndexesToVlanIps < ActiveRecord::Migration[5.1]
   def up
     add_index :vlan_ips, [:vlan_id, :hostname]
   end
